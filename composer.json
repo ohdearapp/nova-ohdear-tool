@@ -1,0 +1,55 @@
+{
+    "name": "ohdearapp/nova-ohdear-tool",
+    "description": "A Laravel Nova tool to display the application log.",
+    "keywords": [
+        "laravel",
+        "nova"
+    ],
+    "repositories": [
+        {
+            "type": "path",
+            "url": "../laravel-nova"
+        }
+    ],
+    "homepage": "https://github.com/ohdearapp/nova-ohdear-tool",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Freek Van der Herten",
+            "email": "freek@spatie.be",
+            "homepage": "https://ohdear.app",
+            "role": "Developer"
+        }
+    ],
+    "require": {
+        "php": ">=7.1.0",
+        "laravel/nova": "^1.0@dev",
+        "ohdearapp/ohdear-php-sdk": "^1.0"
+    },
+    "require-dev": {
+        "orchestra/testbench": "^3.6",
+        "phpunit/phpunit": "7.1"
+    },
+    "autoload": {
+        "psr-4": {
+            "OhDear\\OhDearTool\\": "src/"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "OhDear\\OhDearTool\\Tests\\": "tests"
+        }
+    },
+    "extra": {
+        "laravel": {
+            "providers": [
+                "OhDear\\OhDearTool\\OhDearToolServiceProvider"
+            ]
+        }
+    },
+    "config": {
+        "sort-packages": true
+    },
+    "minimum-stability": "dev",
+    "prefer-stable": true
+}
