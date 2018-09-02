@@ -6,6 +6,7 @@ use Illuminate\Support\Facades\Route;
 use Illuminate\Support\ServiceProvider;
 use OhDear\OhDearTool\Controllers\TailController;
 use OhDear\OhDearTool\Http\Middleware\Authorize;
+use OhDear\PhpSdk\OhDear;
 
 class OhDearToolServiceProvider extends ServiceProvider
 {
@@ -16,6 +17,14 @@ class OhDearToolServiceProvider extends ServiceProvider
         $this->app->booted(function () {
             $this->routes();
         });
+
+        $this->app->singleton(OhDear::class, function () {
+            $token = config('oh-dear-tool.api_token');
+            if (! $token) {
+                throw ConfigNotCorrect::apiTokenMissing();
+            }
+            return new OhDear($token);
+        });
     }
 
     protected function routes()
@@ -25,7 +34,7 @@ class OhDearToolServiceProvider extends ServiceProvider
         }
 
         Route::middleware(['nova', Authorize::class])
-            ->prefix('/nova-vendor/ohdearapp/tail-tool')
+            ->prefix('/nova-vendor/ohdearapp/oh-dear-tool')
             ->group(
                 __DIR__ . '/../routes/api.php'
             );

@@ -2,7 +2,7 @@
 
 namespace OhDear\OhDearTool\Tests;
 
-use OhDear\OhDearTool\Http\Controllers\OhDearController;
+use OhDear\OhDearTool\Http\Controllers\SitesController;
 use OhDear\OhDearTool\OhDearTool;
 use Symfony\Component\HttpFoundation\Response;
 
@@ -13,7 +13,7 @@ class TailControllerTest extends TestCase
         parent::setUp();
 
         $this->app
-            ->when(OhDearController::class)
+            ->when(SitesController::class)
             ->needs('$logDirectory')
             ->give(__DIR__ . '/stubs');
     }
