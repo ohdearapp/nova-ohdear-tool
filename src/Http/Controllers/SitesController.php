@@ -3,6 +3,7 @@
 namespace OhDear\OhDearTool\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Cache;
 use OhDear\OhDearTool\File;
 use Illuminate\Support\Facades\File as IlluminateFile;
 use OhDear\PhpSdk\OhDear;
@@ -19,15 +20,15 @@ class SitesController extends Controller
 
     public function show(int $siteId)
     {
-        \Log::info('in show method');
+       // return Cache::remember("oh-dear-site-{$siteId}", 1, function() use ($siteId) {
+            $site = $this->getSite($siteId);
 
-        $site = $this->getSite($siteId);
-
-        return [
-            'site' => $site,
-            'brokenLinks' => $site->brokenLinks(),
-            'mixedContent' => $site->mixedContent(),
-        ];
+            return [
+                'site' => $site,
+                'brokenLinks' => $site->brokenLinks(),
+                'mixedContent' => $site->mixedContent(),
+            ];
+       // });
     }
 
     protected function getSite(int $siteId): Site
