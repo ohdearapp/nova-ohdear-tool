@@ -27,6 +27,15 @@ class SitesController extends Controller
                 'site' => $site,
                 'brokenLinks' => $site->brokenLinks(),
                 'mixedContent' => $site->mixedContent(),
+                'downtime' => $site->downtime(
+                    now()->subDays(7)->format('YmdHis'),
+                    now()->format('YmdHis')
+                ),
+                'uptime' => $site->uptime(
+                    now()->subYear()->format('YmdHis'),
+                    now()->format('YmdHis'),
+                    'month'
+                ),
             ];
        // });
     }

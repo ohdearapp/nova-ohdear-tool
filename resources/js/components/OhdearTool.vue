@@ -23,6 +23,18 @@
               :broken-links="viewingSite.brokenLinks"
             ></broken-links>
         </div>
+
+        <div>
+            <uptime-periods
+              :uptime-periods="viewingSite.uptime"
+            ></uptime-periods>
+        </div>
+
+        <div>
+            <downtime-periods
+              :downtime-periods="viewingSite.downtime"
+            ></downtime-periods>
+        </div>
     </div>
 </template>
 
@@ -31,12 +43,16 @@
     import SiteSummary from './SiteSummary';
     import MixedContent from './MixedContent';
     import BrokenLinks from './BrokenLinks';
+    import UptimePeriods from './UptimePeriods';
+    import DowntimePeriods from './DowntimePeriods'
 
     export default {
         components: {
             MixedContent,
             SiteSummary,
             BrokenLinks,
+            UptimePeriods,
+            DowntimePeriods,
         },
         watch: {
             async viewingSiteId() {

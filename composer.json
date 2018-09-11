@@ -24,7 +24,7 @@
     "require": {
         "php": ">=7.1.0",
         "laravel/nova": "^1.0",
-        "ohdearapp/ohdear-php-sdk": "^1.2"
+        "ohdearapp/ohdear-php-sdk": "^1.3"
     },
     "require-dev": {
         "orchestra/testbench": "^3.6",
