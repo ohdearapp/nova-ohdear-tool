@@ -5,8 +5,6 @@
             Downtime periods
         </heading>
         <card class="mb-6">
-
-
             <table cellpadding="0" cellspacing="0" class="table w-full">
                 <thead>
                 <tr>
@@ -15,6 +13,9 @@
                     </th>
                     <th class="text-left">
                         Ended at
+                    </th>
+                    <th class="text-left">
+                        Duration
                     </th>
                     <th></th>
                 </tr>
@@ -27,6 +28,9 @@
                     <td>
                         {{ downtimePeriod.endedAt }}
                     </td>
+                    <td>
+                        {{ duration(downtimePeriod) }}
+                    </td>
                 </tr>
                 </tbody>
             </table>
@@ -36,6 +40,15 @@
 
 <script>
     export default {
-        props: ['downtimePeriods']
+        props: ['downtimePeriods'],
+
+        methods: {
+            duration(downtimePeriod) {
+                let startedAt = moment(downtimePeriod.startedAt)
+                let endedAt = moment(downtimePeriod.endedAt)
+
+                return endedAt.from(startedAt, true);
+            }
+        }
     }
 </script>
