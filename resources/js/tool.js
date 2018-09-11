@@ -3,12 +3,12 @@ Nova.booting((Vue, router) => {
         {
             name: 'OhDearTool',
             path: '/oh-dear',
-            component: require('./components/Overview'),
+            component: require('./components/Overview')
         },
         {
             path: '/oh-dear/uptime/:siteId',
             component: require('./components/Uptime/Overview'),
             props: true
-        },
+        }
     ]);
 });

@@ -49,16 +49,13 @@
 </template>
 
 <script>
-    export default {
-        props: [
-            'mixedContent',
-            'latestRunEndedAt',
-        ],
+export default {
+    props: ['mixedContent', 'latestRunEndedAt'],
 
-        computed: {
-            latestRunEndedAtLabel() {
-                return window.moment(this.latestRunEndedAt).fromNow()
-            }
+    computed: {
+        latestRunEndedAtLabel() {
+            return window.moment(this.latestRunEndedAt).fromNow();
         }
     }
+};
 </script>

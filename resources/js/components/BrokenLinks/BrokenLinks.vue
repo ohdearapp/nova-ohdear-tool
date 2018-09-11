@@ -46,7 +46,7 @@
 </template>
 
 <script>
-    export default {
-        props: ['brokenLinks']
-    }
+export default {
+    props: ['brokenLinks']
+};
 </script>

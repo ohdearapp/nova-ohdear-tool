@@ -1,5 +1,4 @@
 <template>
-
     <div>
         <heading class="mb-6">
             Uptime percentages
@@ -64,21 +63,19 @@
 </template>
 
 <script>
-    import moment from 'moment';
+import moment from 'moment';
 
-    export default {
-        props: ['uptimePastWeek', 'uptimePastYear'],
+export default {
+    props: ['uptimePastWeek', 'uptimePastYear'],
 
-        filters: {
-            date(date) {
-                return moment(date).format('YYYY-MM-DD');
-            },
+    filters: {
+        date(date) {
+            return moment(date).format('YYYY-MM-DD');
+        },
 
-            monthYear(date) {
-                return moment(date).format('MMMM YYYY');
-            },
+        monthYear(date) {
+            return moment(date).format('MMMM YYYY');
         }
     }
-
-
+};
 </script>

@@ -39,16 +39,16 @@
 </template>
 
 <script>
-    export default {
-        props: ['downtimePeriods'],
+export default {
+    props: ['downtimePeriods'],
 
-        methods: {
-            duration(downtimePeriod) {
-                let startedAt = moment(downtimePeriod.startedAt)
-                let endedAt = moment(downtimePeriod.endedAt)
+    methods: {
+        duration(downtimePeriod) {
+            let startedAt = moment(downtimePeriod.startedAt);
+            let endedAt = moment(downtimePeriod.endedAt);
 
-                return endedAt.from(startedAt, true);
-            }
+            return endedAt.from(startedAt, true);
         }
     }
+};
 </script>

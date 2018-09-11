@@ -28,27 +28,27 @@
 </template>
 
 <script>
-    import api from '../api';
+import api from '../api';
 
-    export default {
-        watch: {
-            async viewingSiteId() {
-                this.viewingSite = await api.getSite(this.viewingSiteId);
-            }
-        },
+export default {
+    watch: {
+        async viewingSiteId() {
+            this.viewingSite = await api.getSite(this.viewingSiteId);
+        }
+    },
 
-        data() {
-            return {
-                sites: [],
-                viewingSiteId: null,
-                viewingSite: null,
-            }
-        },
+    data() {
+        return {
+            sites: [],
+            viewingSiteId: null,
+            viewingSite: null
+        };
+    },
 
-        async created() {
-            this.sites = await api.getSites();
+    async created() {
+        this.sites = await api.getSites();
 
-            this.viewingSiteId = this.sites[0]['site_id'];
-        },
-    };
+        this.viewingSiteId = this.sites[0]['site_id'];
+    }
+};
 </script>

@@ -10,42 +10,38 @@
 </template>
 
 <script>
-    import CheckStatus from './CheckStatus';
+import CheckStatus from './CheckStatus';
 
-    export default {
-        props: ['site'],
+export default {
+    props: ['site'],
 
-        components: {CheckStatus},
+    components: { CheckStatus },
 
-        computed: {
-            activeChecks() {
-                return this.site.checks
-                    .filter(check => check.enabled)
-                    .map(check => ({
-                        name: _.capitalize(check.type.replace('_', ' ')),
-                        result: this.getStatusForRunResult(check.latestsRunResult),
-                    }));
-            },
-        },
+    computed: {
+        activeChecks() {
+            return this.site.checks.filter(check => check.enabled).map(check => ({
+                name: _.capitalize(check.type.replace('_', ' ')),
+                result: this.getStatusForRunResult(check.latestsRunResult)
+            }));
+        }
+    },
 
-        methods: {
-            getStatusForRunResult(runResult) {
-                if (runResult === 'succeeded') {
-                    return 'success';
-                }
-
-                if (runResult === 'failed') {
-                    return 'danger';
-                }
-
-                if (runResult === 'errored-or-timed-out') {
-                    return 'danger';
-                }
-
-                return 'info';
-
-
+    methods: {
+        getStatusForRunResult(runResult) {
+            if (runResult === 'succeeded') {
+                return 'success';
             }
+
+            if (runResult === 'failed') {
+                return 'danger';
+            }
+
+            if (runResult === 'errored-or-timed-out') {
+                return 'danger';
+            }
+
+            return 'info';
         }
     }
+};
 </script>
