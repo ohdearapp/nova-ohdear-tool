@@ -14,6 +14,7 @@
 import ToOhDearOverview from '../ToOhDearOverview';
 import CheckDetails from './CheckDetails';
 import MixedContent from './MixedContent';
+import api from '../../api';
 
 export default {
     components: {
@@ -21,6 +22,8 @@ export default {
         CheckDetails,
         MixedContent
     },
+
+    props: ['siteId'],
 
     data() {
         return {

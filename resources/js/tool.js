@@ -19,6 +19,11 @@ Nova.booting((Vue, router) => {
             path: '/oh-dear/broken-links/:siteId',
             component: require('./components/BrokenLinks/Overview'),
             props: true
-        }
+        },
+        {
+            path: '/oh-dear/certificate-health/:siteId',
+            component: require('./components/CerticateHealth/Overview'),
+            props: true
+        },
     ]);
 });

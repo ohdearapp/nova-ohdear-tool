@@ -21,5 +21,11 @@ export default {
         return window.axios
             .get(`/nova-vendor/ohdearapp/oh-dear-tool/broken-links/${siteId}`)
             .then(response => response.data);
-    }
+    },
+
+    getCertificateHealth(siteId) {
+        return window.axios
+            .get(`/nova-vendor/ohdearapp/oh-dear-tool/certificate-health/${siteId}`)
+            .then(response => response.data);
+    },
 };

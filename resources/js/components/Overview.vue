@@ -15,6 +15,10 @@
         <router-link tag="li" :to="`/oh-dear/broken-links/${viewingSiteId}`">
             <a>View broken links report</a>
         </router-link>
+
+        <router-link tag="li" :to="`/oh-dear/certificate-health/${viewingSiteId}`">
+            <a>View certificate health report</a>
+        </router-link>
     </div>
 </template>
 

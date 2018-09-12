@@ -14,6 +14,7 @@
 import ToOhDearOverview from '../ToOhDearOverview';
 import CheckDetails from './CheckDetails';
 import BrokenLinks from './BrokenLinks';
+import api from '../../api';
 
 export default {
     components: {
@@ -21,6 +22,8 @@ export default {
         CheckDetails,
         BrokenLinks
     },
+
+    props: ['siteId'],
 
     data() {
         return {
