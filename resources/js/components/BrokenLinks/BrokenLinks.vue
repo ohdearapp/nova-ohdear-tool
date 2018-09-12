@@ -1,12 +1,9 @@
 <template>
-
     <div>
         <heading class="mb-6">
             Broken links
         </heading>
         <card class="mb-6">
-
-
             <table cellpadding="0" cellspacing="0" class="table w-full">
                 <thead>
                 <tr>

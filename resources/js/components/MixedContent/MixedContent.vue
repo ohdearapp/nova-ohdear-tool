@@ -1,15 +1,9 @@
 <template>
-
     <div>
         <heading class="mb-6">
             Mixed content
         </heading>
         <card class="mb-6">
-
-            <div>
-                Latest run ended at: {{ latestRunEndedAtLabel }}
-            </div>
-
             <table cellpadding="0" cellspacing="0" class="table w-full">
                 <thead>
                 <tr>
@@ -50,12 +44,6 @@
 
 <script>
 export default {
-    props: ['mixedContent', 'latestRunEndedAt'],
-
-    computed: {
-        latestRunEndedAtLabel() {
-            return window.moment(this.latestRunEndedAt).fromNow();
-        }
-    }
+    props: ['mixedContent']
 };
 </script>

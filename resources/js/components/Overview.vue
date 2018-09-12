@@ -1,7 +1,5 @@
 <template>
     <div>
-
-
         <heading class="mb-6">
             Oh Dear
         </heading>
@@ -10,20 +8,13 @@
             <a>View uptime report</a>
         </router-link>
 
-        <!--
-        <div>
-            <mixed-content
-              :mixed-content="viewingSite.mixedContent"
-              :lastest-run-ended-at="viewingSite.latestRunEndedAt"
-            ></mixed-content>
-        </div>
+        <router-link tag="li" :to="`/oh-dear/mixed-content/${viewingSiteId}`">
+            <a>View mixed content report</a>
+        </router-link>
 
-        <div>
-            <broken-links
-              :broken-links="viewingSite.brokenLinks"
-            ></broken-links>
-        </div>
-        -->
+        <router-link tag="li" :to="`/oh-dear/broken-links/${viewingSiteId}`">
+            <a>View broken links report</a>
+        </router-link>
     </div>
 </template>
 

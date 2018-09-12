@@ -9,6 +9,16 @@ Nova.booting((Vue, router) => {
             path: '/oh-dear/uptime/:siteId',
             component: require('./components/Uptime/Overview'),
             props: true
+        },
+        {
+            path: '/oh-dear/mixed-content/:siteId',
+            component: require('./components/MixedContent/Overview'),
+            props: true
+        },
+        {
+            path: '/oh-dear/broken-links/:siteId',
+            component: require('./components/BrokenLinks/Overview'),
+            props: true
         }
     ]);
 });
