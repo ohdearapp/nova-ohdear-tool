@@ -33,7 +33,7 @@ import CheckRequestRun from './CheckRequestRun';
 import Check from '../models/Check';
 
 export default {
-    props: ['initCheck', 'statusLabels'],
+    props: ['initCheck'],
 
     data() {
         return {

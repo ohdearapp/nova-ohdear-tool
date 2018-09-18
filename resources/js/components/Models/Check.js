@@ -21,7 +21,7 @@ class Check {
         return true;
     }
 
-    get latestRunResult_label() {
+    get latestRunResultLabel() {
         if (!this.enabled) {
             return 'Not checked';
         }
@@ -73,7 +73,7 @@ class Check {
         return 'Error running check';
     }
 
-    get latestRunResult_class() {
+    get latestRunResultClass() {
         if (!this.enabled || !this.latestRunResult) {
             return 'is-disabled';
         }

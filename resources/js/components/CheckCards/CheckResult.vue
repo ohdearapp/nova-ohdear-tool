@@ -19,16 +19,8 @@ export default {
             return this.hasLatestRun ? 'a' : 'span';
         },
 
-        href() {
-            if (!this.check) {
-                return '';
-            }
-
-            return this.check.latest_run_report_url;
-        },
-
         className() {
-            return this.check ? this.check.latest_run_result_class : 'is-disabled';
+            return this.check ? this.check.latestRunResultClass : 'is-disabled';
         },
 
         hasLatestRun() {
@@ -52,15 +44,15 @@ export default {
                 return 'Disabled';
             }
 
-            if (this.check.always_running && this.check.enabled) {
+            if (this.check.alwaysRunning && this.check.enabled) {
                 return 'Always running';
             }
 
-            if (this.check.latest_run_result === 'pending') {
+            if (this.check.latestRunResult === 'pending') {
                 return this.check.latest_run_result_label;
             }
 
-            return this.check.latest_run_result_label;
+            return this.check.latestRunResultLabel;
         },
 
         icon() {
