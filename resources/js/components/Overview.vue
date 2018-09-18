@@ -21,6 +21,11 @@
                 <a>View certificate health report</a>
             </router-link>
 
+            <uptime v-if="uptimeCheck"
+              :check="uptimeCheck"
+              :site-id="viewingSiteId"
+            ></uptime>
+
             <broken-links v-if="brokenLinksCheck"
               :check="brokenLinksCheck"
               :site-id="viewingSiteId"
@@ -36,16 +41,22 @@
 
 <script>
     import api from '../api';
+    import Uptime from './CheckCards/Uptime';
     import BrokenLinks from './CheckCards/BrokenLinks';
     import CertificateHealth from './CheckCards/CertificateHealth';
 
     export default {
         components: {
+            Uptime,
             BrokenLinks,
             CertificateHealth,
         },
 
         computed: {
+            uptimeCheck() {
+                return this.getCheck('uptime');
+            },
+
             brokenLinksCheck() {
                 return this.getCheck('broken_links');
             },
