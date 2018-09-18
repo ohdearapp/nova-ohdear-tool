@@ -29,6 +29,12 @@
               :site-id="viewingSiteId"
             ></mixed-content>
 
+            <certificate-transparancy
+              v-if="certificateTransparancyCheck"
+              :check="certificateTransparancyCheck"
+              :site-id="viewingSiteId"
+            ></certificate-transparancy>
+
         </div>
     </loading-view>
 </template>
@@ -39,13 +45,15 @@ import Uptime from './CheckCards/Uptime';
 import BrokenLinks from './CheckCards/BrokenLinks';
 import CertificateHealth from './CheckCards/CertificateHealth';
 import MixedContent from './CheckCards/MixedContent';
+import CertificateTransparancy from './CheckCards/CertificateTransparancy';
 
 export default {
     components: {
         Uptime,
         CertificateHealth,
         BrokenLinks,
-        MixedContent
+        MixedContent,
+        CertificateTransparancy,
     },
 
     computed: {
@@ -63,12 +71,19 @@ export default {
 
         mixedContentCheck() {
             return this.getCheck('mixed_content');
+        },
+        certificateTransparancyCheck() {
+            return this.getCheck('certificate_transparency');
         }
     },
 
     watch: {
         async viewingSiteId() {
+            this.loading = true;
+
             this.viewingSite = await api.getSite(this.viewingSiteId);
+
+            this.loading = false;
         }
     },
 
@@ -85,8 +100,6 @@ export default {
         this.sites = await api.getSites();
 
         this.viewingSiteId = this.sites[0]['site_id'];
-
-        this.loading = false;
     },
 
     methods: {

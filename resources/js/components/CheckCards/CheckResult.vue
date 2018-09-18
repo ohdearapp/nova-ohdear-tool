@@ -1,7 +1,6 @@
 <template>
     <span
         :is="tag"
-        :href="href"
         class="check-result"
         :class="className"
     >
