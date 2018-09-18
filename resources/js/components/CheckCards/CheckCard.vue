@@ -2,7 +2,7 @@
     <article class="card p-4 h-full flex flex-col">
         <header class="mb-4 flex items-center justify-between">
             <h2 class="h1 mb-0 text-lg">
-                {{ check.type }}
+                {{ check.label }}
             </h2>
             <check-result :check="check"></check-result>
         </header>
