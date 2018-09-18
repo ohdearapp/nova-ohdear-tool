@@ -4,7 +4,7 @@ export default {
     },
 
     getSite(siteId) {
-        return window.axios.get(`/nova-vendor/ohdearapp/oh-dear-tool/sites/${siteId}`).then(response => response.data);
+        return window.axios.get(`/nova-vendor/ohdearapp/oh-dear-tool/sites/${siteId}`).then(response => response.data.site);
     },
 
     getUptime(siteId) {
