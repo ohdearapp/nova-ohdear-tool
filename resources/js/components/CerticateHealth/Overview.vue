@@ -3,15 +3,15 @@
         <to-oh-dear-overview></to-oh-dear-overview>
 
         <certificate-details
-            :certificate-details="certificateDetails"
+          :certificate-details="certificateDetails"
         ></certificate-details>
 
         <certificate-checks
-            :certificate-checks="certificateChecks"
+          :certificate-checks="certificateChecks"
         ></certificate-checks>
 
         <certificate-chain-issuers
-            :certificate-chain-issuers="certificateChainIssuers"
+          :certificate-chain-issuers="certificateChainIssuers"
         ></certificate-chain-issuers>
 
         <check-details></check-details>
@@ -49,10 +49,10 @@
 
         async created() {
             let response = await api.getCertificateHealth(this.siteId);
-
-            this.certificateDetails = response.certificate_health.certificate_details;
-            this.certificateChecks = response.certificate_health.certificate_checks;
-            this.certificateChainIssuers = response.certificate_health.certificate_chain_issuers;
+console.log(response);
+            this.certificateDetails = response.certificate_health.certificateDetails;
+            this.certificateChecks = response.certificate_health.certificateChecks;
+            this.certificateChainIssuers = response.certificate_health.certificateChainIssuers;
 
             this.loading = false;
         }
