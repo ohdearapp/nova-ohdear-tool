@@ -21,7 +21,7 @@
                 </thead>
                 <tbody>
 
-                <tr v-for="uptime in uptimePastWeek">
+                <tr v-for="uptime in uptimePastWeek.reverse()">
                     <td>
                         {{ uptime.datetime | date }}
                     </td>
@@ -48,7 +48,7 @@
                 </thead>
                 <tbody>
 
-                <tr v-for="uptime in uptimePastYear">
+                <tr v-for="uptime in uptimePastYear.reverse()">
                     <td>
                         {{ uptime.datetime | monthYear }}
                     </td>
