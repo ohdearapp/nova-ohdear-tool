@@ -77,10 +77,10 @@ export default {
                     succeeded: 'check-icon',
                     warning: 'exclamation-icon',
                     failed: 'times-icon',
-                    pending: 'clock-icon',
+                    pending: 'clock-icon'
                 }[this.check.latest_run_result] || null
             );
-        },
-    },
+        }
+    }
 };
 </script>

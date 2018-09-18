@@ -34,15 +34,15 @@
 
 
 <script>
-    import CheckCard from './CheckCard';
-    import RelativeTime from './RelativeTime';
+import CheckCard from './CheckCard';
+import RelativeTime from './RelativeTime';
 
-    export default {
-        props: ['check', 'siteId'],
+export default {
+    props: ['check', 'siteId'],
 
-        components: {
-            CheckCard,
-            RelativeTime,
-        },
+    components: {
+        CheckCard,
+        RelativeTime
     }
+};
 </script>

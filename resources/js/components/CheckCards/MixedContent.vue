@@ -5,12 +5,12 @@
                 <div v-if="check.enabled">
                     <div v-if="check.latestRunEndedAt">
                         <p v-if="check.latestRunResult === 'succeeded'">
-                            Your certificate is healthy. Oh Dear! last checked
+                            No mixed content found, your site is secure. We last checked
                             <relative-time :datetime="check.latestRunEndedAt"></relative-time>
                             .
                         </p>
                         <p v-else>
-                            Your certificate is unhealthy. Oh Dear! last checked
+                            Mixed content found, your site is insecure. We last checked
                             <relative-time :datetime="check.latestRunEndedAt"></relative-time>
                             .
                         </p>
@@ -20,12 +20,12 @@
                     </p>
                 </div>
                 <p v-else>
-                    We are not monitoring the certificate of your site.
+                    We are not monitoring mixed content.
                 </p>
             </div>
             <div slot="link" slot-scope="check">
-                <router-link tag="li" :to="`/oh-dear/certificate-health/${siteId}`">
-                    <a>View certificate health report</a>
+                <router-link tag="li" :to="`/oh-dear/mixed-content/${siteId}`">
+                    <a>View mixed content report</a>
                 </router-link>
             </div>
         </check-card>

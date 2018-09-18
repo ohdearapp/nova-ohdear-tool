@@ -6,24 +6,24 @@
 </template>
 
 <script>
-    import Date from '../../utilities/Date';
-    import upperFirst from 'lodash/upperFirst';
+import Date from '../../utilities/Date';
+import upperFirst from 'lodash/upperFirst';
 
-    export default {
-        props: ['datetime'],
+export default {
+    props: ['datetime'],
 
-        mixins: [Date],
+    mixins: [Date],
 
-        created() {
-            this.interval = setInterval(() => this.$forceUpdate(), 30 * 1000);
-        },
+    created() {
+        this.interval = setInterval(() => this.$forceUpdate(), 30 * 1000);
+    },
 
-        beforeDestroy() {
-            clearInterval(this.interval);
-        },
+    beforeDestroy() {
+        clearInterval(this.interval);
+    },
 
-        filters: {
-            upperFirst,
-        },
-    };
+    filters: {
+        upperFirst
+    }
+};
 </script>

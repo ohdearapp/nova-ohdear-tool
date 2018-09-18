@@ -4,7 +4,9 @@ export default {
     },
 
     getSite(siteId) {
-        return window.axios.get(`/nova-vendor/ohdearapp/oh-dear-tool/sites/${siteId}`).then(response => response.data.site);
+        return window.axios
+            .get(`/nova-vendor/ohdearapp/oh-dear-tool/sites/${siteId}`)
+            .then(response => response.data.site);
     },
 
     getUptime(siteId) {
@@ -29,15 +31,9 @@ export default {
             .then(response => response.data);
     },
 
-    requestCheckRun(checkId) {
+    requestCheckRun(checkId) {},
 
-    },
+    enableCheck(checkId) {},
 
-    enableCheck(checkId) {
-
-    },
-
-    disableCheck(checkId) {
-
-    }
+    disableCheck(checkId) {}
 };

@@ -14,6 +14,6 @@ export default {
                 .tz(dateString, 'UTC')
                 .tz(Nova.config.timezone)
                 .fromNow();
-        },
-    },
+        }
+    }
 };

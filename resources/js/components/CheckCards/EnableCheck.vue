@@ -12,7 +12,7 @@ export default {
 
     data() {
         return {
-            enabled: this.check.enabled,
+            enabled: this.check.enabled
         };
     },
 
@@ -21,7 +21,7 @@ export default {
             this.enabled ? api.disableCheck(this.check.id) : api.enableCheck(this.check.id);
 
             this.enabled = !this.enabled;
-        },
-    },
+        }
+    }
 };
 </script>

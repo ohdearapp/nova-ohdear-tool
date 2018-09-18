@@ -27,28 +27,28 @@
 </template>
 
 <script>
-    import EnableCheck from './EnableCheck';
-    import CheckResult from './CheckResult';
-    import CheckRequestRun from './CheckRequestRun';
-    import Check from '../models/Check'
+import EnableCheck from './EnableCheck';
+import CheckResult from './CheckResult';
+import CheckRequestRun from './CheckRequestRun';
+import Check from '../models/Check';
 
-    export default {
-        props: ['initCheck', 'statusLabels'],
+export default {
+    props: ['initCheck', 'statusLabels'],
 
-        data() {
-            return {
-                check: null,
-            };
-        },
+    data() {
+        return {
+            check: null
+        };
+    },
 
-        components: {
-            EnableCheck,
-            CheckResult,
-            CheckRequestRun,
-        },
+    components: {
+        EnableCheck,
+        CheckResult,
+        CheckRequestRun
+    },
 
-        created() {
-            this.check = new Check(this.initCheck);
-        },
-    };
+    created() {
+        this.check = new Check(this.initCheck);
+    }
+};
 </script>

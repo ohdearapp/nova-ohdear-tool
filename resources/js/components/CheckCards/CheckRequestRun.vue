@@ -14,7 +14,7 @@ export default {
 
     data() {
         return {
-            disabled: false,
+            disabled: false
         };
     },
 
@@ -22,10 +22,10 @@ export default {
         async requestRun() {
             await api.requestCheckRun(this.check.id);
 
-            this.$toasted.show('New run scheduled', { type: 'success'});
+            this.$toasted.show('New run scheduled', { type: 'success' });
 
             this.disabled = true;
-        },
-    },
+        }
+    }
 };
 </script>

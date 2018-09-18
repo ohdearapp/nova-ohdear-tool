@@ -16,7 +16,7 @@
 </template>
 
 <script>
-    export default {
-        props: ['certificateChainIssuers'],
-    }
+export default {
+    props: ['certificateChainIssuers']
+};
 </script>

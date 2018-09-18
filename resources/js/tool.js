@@ -24,6 +24,6 @@ Nova.booting((Vue, router) => {
             path: '/oh-dear/certificate-health/:siteId',
             component: require('./components/CerticateHealth/Overview'),
             props: true
-        },
+        }
     ]);
 });
