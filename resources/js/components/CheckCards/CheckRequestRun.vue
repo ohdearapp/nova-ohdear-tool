@@ -6,10 +6,8 @@
 </template>
 
 <script>
-import SiteAdder from './SiteAdder';
-import Echo from '../mixins/Echo';
 import { sortBy, reject } from 'lodash';
-import { requestCheckRun } from '../api';
+import api from '../../api';
 
 export default {
     props: ['check'],
@@ -22,7 +20,7 @@ export default {
 
     methods: {
         async requestRun() {
-            await requestCheckRun(this.check.id);
+            await api.requestCheckRun(this.check.id);
 
             this.$toasted.show('New run scheduled', { type: 'success'});
 

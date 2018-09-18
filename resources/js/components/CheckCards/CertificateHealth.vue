@@ -5,23 +5,27 @@
                 <div v-if="check.enabled">
                     <div v-if="check.latestRunEndedAt">
                         <p v-if="check.latestRunResult === 'succeeded'">
-                            No broken links found. Oh Dear! last checked  <relative-time :datetime="check.latestRunEndedAt"></relative-time>.
+                            Your certificate is healthy. Oh Dear! last checked
+                            <relative-time :datetime="check.latestRunEndedAt"></relative-time>
+                            .
                         </p>
                         <p v-else>
-                            Broken links found. Oh Dear! last checked <relative-time :datetime="check.latestRunEndedAt"></relative-time>.
+                            Your certificate is unhealthy. Oh Dear! last checked
+                            <relative-time :datetime="check.latestRunEndedAt"></relative-time>
+                            .
                         </p>
                     </div>
                     <p v-else>
-                        Oh Dear! will run this check for the first time soon.
+                        We will run this check for the first time soon.
                     </p>
                 </div>
                 <p v-else>
-                    Oh Dear! is not monitoring broken links.
+                    We are not monitoring the certificate of your site.
                 </p>
             </div>
             <div slot="link" slot-scope="check">
-                <router-link tag="li" :to="`/oh-dear/broken-links/${siteId}`">
-                    <a>View broken links report</a>
+                <router-link tag="li" :to="`/oh-dear/certificate-health/${siteId}`">
+                    <a>View certificate health report</a>
                 </router-link>
             </div>
         </check-card>

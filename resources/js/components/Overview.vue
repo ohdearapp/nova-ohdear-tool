@@ -21,23 +21,38 @@
                 <a>View certificate health report</a>
             </router-link>
 
-            <broken-links v-if="brokenLinksCheck" init-check="brokenLinksCheck">
-            </broken-links>
+            <broken-links v-if="brokenLinksCheck"
+              :check="brokenLinksCheck"
+              :site-id="viewingSiteId"
+            ></broken-links>
+
+            <certificate-health v-if="certificateHealthCheck"
+              :check="certificateHealthCheck"
+              :site-id="viewingSiteId"
+            ></certificate-health>
         </div>
     </loading-view>
 </template>
 
 <script>
     import api from '../api';
-    import BrokenLinks from "./BrokenLinks/BrokenLinks";
+    import BrokenLinks from './CheckCards/BrokenLinks';
+    import CertificateHealth from './CheckCards/CertificateHealth';
 
     export default {
-        components: {BrokenLinks},
+        components: {
+            BrokenLinks,
+            CertificateHealth,
+        },
 
         computed: {
             brokenLinksCheck() {
                 return this.getCheck('broken_links');
-            }
+            },
+
+            certificateHealthCheck() {
+                return this.getCheck('certificate_health');
+            },
         },
 
         watch: {
@@ -65,14 +80,12 @@
 
         methods: {
             getCheck(type) {
-                if (! this.viewingSite) {
+                if (!this.viewingSite) {
                     return null;
                 }
 
-                console.log('viewingsite', this.viewingSite);
-
                 return this.viewingSite.checks.find(check => check.type === type);
-            }
+            },
         }
     };
 </script>

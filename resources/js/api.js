@@ -28,4 +28,16 @@ export default {
             .get(`/nova-vendor/ohdearapp/oh-dear-tool/certificate-health/${siteId}`)
             .then(response => response.data);
     },
+
+    requestCheckRun(checkId) {
+
+    },
+
+    enableCheck(checkId) {
+
+    },
+
+    disableCheck(checkId) {
+
+    }
 };

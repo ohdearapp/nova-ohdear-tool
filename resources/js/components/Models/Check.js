@@ -10,27 +10,27 @@ class Check {
             return false;
         }
 
-        if (this.latest_run_result === 'pending') {
+        if (this.latestRunResult === 'pending') {
             return false;
         }
 
-        if (this.latest_run_result === 'succeeded') {
+        if (this.latestRunResult === 'succeeded') {
             return false;
         }
 
         return true;
     }
 
-    get latest_run_result_label() {
+    get latestRunResult_label() {
         if (!this.enabled) {
             return 'Not checked';
         }
 
-        if (this.latest_run_result === 'pending') {
+        if (this.latestRunResult === 'pending') {
             return 'Pending';
         }
 
-        if (this.latest_run_result === 'succeeded') {
+        if (this.latestRunResult === 'succeeded') {
             if (this.type === 'uptime') {
                 return 'Site is up';
             }
@@ -50,7 +50,7 @@ class Check {
             return 'Succeeded';
         }
 
-        if (this.latest_run_result === 'failed') {
+        if (this.latestRunResult === 'failed') {
             if (this.type === 'uptime') {
                 return 'Site is down';
             }
@@ -73,12 +73,12 @@ class Check {
         return 'Error running check';
     }
 
-    get latest_run_result_class() {
-        if (!this.enabled || !this.latest_run_result) {
+    get latestRunResult_class() {
+        if (!this.enabled || !this.latestRunResult) {
             return 'is-disabled';
         }
 
-        return `is-${this.latest_run_result}`;
+        return `is-${this.latestRunResult}`;
     }
 }
 

@@ -5,8 +5,7 @@
 </template>
 
 <script>
-import { enableCheck, disableCheck } from '../api';
-import Echo from '../mixins/Echo';
+import api from '../../api';
 
 export default {
     props: ['check'],
@@ -19,7 +18,7 @@ export default {
 
     methods: {
         toggleEnabled() {
-            this.enabled ? disableCheck(this.check.id) : enableCheck(this.check.id);
+            this.enabled ? api.disableCheck(this.check.id) : api.enableCheck(this.check.id);
 
             this.enabled = !this.enabled;
         },

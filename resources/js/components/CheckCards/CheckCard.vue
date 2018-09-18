@@ -14,7 +14,7 @@
                 <slot name="link" v-bind="check"></slot>
             </div>
         </div>
-        <!--
+
         <section class="mt-4 flex justify-between">
             <enable-check
               :check="check"
@@ -23,7 +23,6 @@
               :check="check"
             ></check-request-run>
         </section>
-        -->
     </article>
 </template>
 
@@ -31,6 +30,7 @@
     import EnableCheck from './EnableCheck';
     import CheckResult from './CheckResult';
     import CheckRequestRun from './CheckRequestRun';
+    import Check from '../models/Check'
 
     export default {
         props: ['initCheck', 'statusLabels'],
