@@ -53,7 +53,7 @@ export default {
         CertificateHealth,
         BrokenLinks,
         MixedContent,
-        CertificateTransparancy,
+        CertificateTransparancy
     },
 
     computed: {

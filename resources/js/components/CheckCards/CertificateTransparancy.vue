@@ -23,14 +23,13 @@
 </template>
 
 <script>
-    import CheckCard from './CheckCard';
+import CheckCard from './CheckCard';
 
-    export default {
-        props: ['check', 'siteId'],
+export default {
+    props: ['check', 'siteId'],
 
-        components: {
-            CheckCard,
-        }
-    };
+    components: {
+        CheckCard
+    }
+};
 </script>
-

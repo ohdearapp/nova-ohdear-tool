@@ -2,9 +2,6 @@
     <loading-view :loading="loading">
         <to-oh-dear-overview></to-oh-dear-overview>
 
-        <check-details
-        ></check-details>
-
         <div>
             <uptime-percentages
               :uptime-past-week="uptimePastWeek"
@@ -20,7 +17,6 @@
 
 <script>
 import ToOhDearOverview from '../ToOhDearOverview';
-import CheckDetails from './CheckDetails';
 import DowntimePeriods from './DowntimePeriods';
 import UptimePercentages from './UptimePercentages';
 import api from '../../api';
@@ -28,7 +24,6 @@ import api from '../../api';
 export default {
     components: {
         ToOhDearOverview,
-        CheckDetails,
         DowntimePeriods,
         UptimePercentages
     },

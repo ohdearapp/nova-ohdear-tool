@@ -31,9 +31,21 @@ export default {
             .then(response => response.data);
     },
 
-    requestCheckRun(checkId) {},
+    requestRunCheck(checkId) {
+        return window.axios
+            .get(`/nova-vendor/ohdearapp/oh-dear-tool/checks/${checkId}/request-run`)
+            .then(response => response.data);
+    },
 
-    enableCheck(checkId) {},
+    enableCheck(checkId) {
+        return window.axios
+            .get(`/nova-vendor/ohdearapp/oh-dear-tool/checks/${checkId}/enable`)
+            .then(response => response.data);
+    },
 
-    disableCheck(checkId) {}
+    disableCheck(checkId) {
+        return window.axios
+            .get(`/nova-vendor/ohdearapp/oh-dear-tool/checks/${checkId}/disable`)
+            .then(response => response.data);
+    }
 };

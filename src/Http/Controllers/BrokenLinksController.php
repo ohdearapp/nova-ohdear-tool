@@ -9,9 +9,8 @@ use Illuminate\Support\Facades\File as IlluminateFile;
 use OhDear\PhpSdk\OhDear;
 use OhDear\PhpSdk\Resources\Site;
 use Symfony\Component\Finder\SplFileInfo;
-use Illuminate\Routing\Controller;
 
-class BrokenLinksController extends Controller
+class BrokenLinksController
 {
     /** @var \OhDear\PhpSdk\OhDear */
     protected $ohDear;

@@ -13,8 +13,6 @@
         <certificate-chain-issuers
           :certificate-chain-issuers="certificateChainIssuers"
         ></certificate-chain-issuers>
-
-        <check-details></check-details>
     </loading-view>
 </template>
 
@@ -23,7 +21,6 @@ import ToOhDearOverview from '../ToOhDearOverview';
 import CertificateDetails from './CertificateDetails';
 import CertificateChecks from './CertificateChecks';
 import CertificateChainIssuers from './CertificateChainIssuers';
-import CheckDetails from './CheckDetails';
 
 import api from '../../api';
 
@@ -32,8 +29,7 @@ export default {
         ToOhDearOverview,
         CertificateDetails,
         CertificateChecks,
-        CertificateChainIssuers,
-        CheckDetails
+        CertificateChainIssuers
     },
 
     props: ['siteId'],
@@ -49,7 +45,6 @@ export default {
 
     async created() {
         let response = await api.getCertificateHealth(this.siteId);
-        console.log(response);
         this.certificateDetails = response.certificate_health.certificateDetails;
         this.certificateChecks = response.certificate_health.certificateChecks;
         this.certificateChainIssuers = response.certificate_health.certificateChainIssuers;

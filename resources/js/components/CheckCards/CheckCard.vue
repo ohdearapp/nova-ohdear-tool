@@ -30,7 +30,7 @@
 import EnableCheck from './EnableCheck';
 import CheckResult from './CheckResult';
 import CheckRequestRun from './CheckRequestRun';
-import Check from '../models/Check';
+import Check from '../../models/Check';
 
 export default {
     props: ['initCheck'],

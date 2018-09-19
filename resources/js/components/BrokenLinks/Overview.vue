@@ -2,8 +2,6 @@
     <loading-view :loading="loading">
         <to-oh-dear-overview></to-oh-dear-overview>
 
-        <check-details></check-details>
-
         <broken-links
           :broken-links="brokenLinks"
         ></broken-links>
@@ -12,14 +10,12 @@
 
 <script>
 import ToOhDearOverview from '../ToOhDearOverview';
-import CheckDetails from './CheckDetails';
 import BrokenLinks from './BrokenLinks';
 import api from '../../api';
 
 export default {
     components: {
         ToOhDearOverview,
-        CheckDetails,
         BrokenLinks
     },
 

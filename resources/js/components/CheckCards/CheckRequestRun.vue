@@ -6,7 +6,6 @@
 </template>
 
 <script>
-import { sortBy, reject } from 'lodash';
 import api from '../../api';
 
 export default {
@@ -20,7 +19,7 @@ export default {
 
     methods: {
         async requestRun() {
-            await api.requestCheckRun(this.check.id);
+            await api.requestRunCheck(this.check.id);
 
             this.$toasted.show('New run scheduled', { type: 'success' });
 
