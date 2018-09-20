@@ -12,8 +12,8 @@ export default {
 
     data() {
         return {
-            enabled: this.check.enabled,
-        }
+            enabled: this.check.enabled
+        };
     },
 
     methods: {
@@ -24,13 +24,13 @@ export default {
         },
 
         enableCheck() {
-            this.$toasted.show(`The ${this.check.label.toLowerCase()} check has been enabled`, {type: 'success'});
+            this.$toasted.show(`The ${this.check.label.toLowerCase()} check has been enabled`, { type: 'success' });
 
             api.enableCheck(this.check.id);
         },
 
         disableCheck() {
-            this.$toasted.show(`The ${this.check.label.toLowerCase()} check has been disabled`, {type: 'success'});
+            this.$toasted.show(`The ${this.check.label.toLowerCase()} check has been disabled`, { type: 'success' });
 
             api.disableCheck(this.check.id);
         }

@@ -9,29 +9,29 @@
 </template>
 
 <script>
-    import ToOhDearOverview from '../ToOhDearOverview';
-    import BrokenLinks from './BrokenLinks';
-    import api from '../../api';
+import ToOhDearOverview from '../ToOhDearOverview';
+import BrokenLinks from './BrokenLinks';
+import api from '../../api';
 
-    export default {
-        components: {
-            ToOhDearOverview,
-            BrokenLinks
-        },
+export default {
+    components: {
+        ToOhDearOverview,
+        BrokenLinks
+    },
 
-        props: ['siteId'],
+    props: ['siteId'],
 
-        data: () => ({
-            loading: true,
-            brokenLinks: []
-        }),
+    data: () => ({
+        loading: true,
+        brokenLinks: []
+    }),
 
-        async created() {
-            let response = await api.getBrokenLinks(this.siteId);
+    async created() {
+        let response = await api.getBrokenLinks(this.siteId);
 
-            this.brokenLinks = response.brokenLinks;
+        this.brokenLinks = response.brokenLinks;
 
-            this.loading = false;
-        }
-    };
+        this.loading = false;
+    }
+};
 </script>

@@ -17,37 +17,37 @@
 </template>
 
 <script>
-    import ToOhDearOverview from '../ToOhDearOverview';
-    import CertificateDetails from './CertificateDetails';
-    import CertificateChecks from './CertificateChecks';
-    import CertificateChainIssuers from './CertificateChainIssuers';
+import ToOhDearOverview from '../ToOhDearOverview';
+import CertificateDetails from './CertificateDetails';
+import CertificateChecks from './CertificateChecks';
+import CertificateChainIssuers from './CertificateChainIssuers';
 
-    import api from '../../api';
+import api from '../../api';
 
-    export default {
-        components: {
-            ToOhDearOverview,
-            CertificateDetails,
-            CertificateChecks,
-            CertificateChainIssuers
-        },
+export default {
+    components: {
+        ToOhDearOverview,
+        CertificateDetails,
+        CertificateChecks,
+        CertificateChainIssuers
+    },
 
-        props: ['siteId'],
+    props: ['siteId'],
 
-        data: () => ({
-            loading: true,
-            certificateDetails: {},
-            certificateChecks: {},
-            certificateChainIssuers: {}
-        }),
+    data: () => ({
+        loading: true,
+        certificateDetails: {},
+        certificateChecks: {},
+        certificateChainIssuers: {}
+    }),
 
-        async created() {
-            let response = await api.getCertificateHealth(this.siteId);
-            this.certificateDetails = response.certificate_health.certificateDetails;
-            this.certificateChecks = response.certificate_health.certificateChecks;
-            this.certificateChainIssuers = response.certificate_health.certificateChainIssuers;
+    async created() {
+        let response = await api.getCertificateHealth(this.siteId);
+        this.certificateDetails = response.certificate_health.certificateDetails;
+        this.certificateChecks = response.certificate_health.certificateChecks;
+        this.certificateChainIssuers = response.certificate_health.certificateChainIssuers;
 
-            this.loading = false;
-        }
-    };
+        this.loading = false;
+    }
+};
 </script>
