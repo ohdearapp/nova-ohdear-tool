@@ -20,7 +20,7 @@ class SitesController extends Controller
 
     public function show(int $siteId)
     {
-       return Cache::remember("oh-dear-site-{$siteId}", 1, function() use ($siteId) {
+      return Cache::remember("oh-dear-site-{$siteId}", 1, function() use ($siteId) {
             $site = $this->getSite($siteId);
 
             return [

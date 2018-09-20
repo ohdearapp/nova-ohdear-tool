@@ -40,76 +40,95 @@
 </template>
 
 <script>
-import api from '../api';
-import Uptime from './CheckCards/Uptime';
-import BrokenLinks from './CheckCards/BrokenLinks';
-import CertificateHealth from './CheckCards/CertificateHealth';
-import MixedContent from './CheckCards/MixedContent';
-import CertificateTransparancy from './CheckCards/CertificateTransparancy';
+    import api from '../api';
+    import Uptime from './CheckCards/Uptime';
+    import BrokenLinks from './CheckCards/BrokenLinks';
+    import CertificateHealth from './CheckCards/CertificateHealth';
+    import MixedContent from './CheckCards/MixedContent';
+    import CertificateTransparancy from './CheckCards/CertificateTransparancy';
 
-export default {
-    components: {
-        Uptime,
-        CertificateHealth,
-        BrokenLinks,
-        MixedContent,
-        CertificateTransparancy
-    },
-
-    computed: {
-        uptimeCheck() {
-            return this.getCheck('uptime');
+    export default {
+        components: {
+            Uptime,
+            CertificateHealth,
+            BrokenLinks,
+            MixedContent,
+            CertificateTransparancy
         },
 
-        certificateHealthCheck() {
-            return this.getCheck('certificate_health');
+        computed: {
+            uptimeCheck() {
+                return this.getCheck('uptime');
+            },
+
+            certificateHealthCheck() {
+                return this.getCheck('certificate_health');
+            },
+
+            brokenLinksCheck() {
+                return this.getCheck('broken_links');
+            },
+
+            mixedContentCheck() {
+                return this.getCheck('mixed_content');
+            },
+            certificateTransparancyCheck() {
+                return this.getCheck('certificate_transparency');
+            }
         },
 
-        brokenLinksCheck() {
-            return this.getCheck('broken_links');
+        watch: {
+            async viewingSiteId() {
+                this.loading = true;
+
+                this.$set(this, 'viewingSite',  await api.getSite(this.viewingSiteId));
+
+                this.loading = false;
+            }
         },
 
-        mixedContentCheck() {
-            return this.getCheck('mixed_content');
-        },
-        certificateTransparancyCheck() {
-            return this.getCheck('certificate_transparency');
-        }
-    },
-
-    watch: {
-        async viewingSiteId() {
-            this.loading = true;
-
-            this.viewingSite = await api.getSite(this.viewingSiteId);
-
-            this.loading = false;
-        }
-    },
-
-    data() {
-        return {
+        data: () => ({
             sites: [],
             viewingSiteId: null,
             viewingSite: null,
             loading: true
-        };
-    },
+        }),
 
-    async created() {
-        this.sites = await api.getSites();
 
-        this.viewingSiteId = this.sites[0]['site_id'];
-    },
+        async created() {
+            this.sites = await api.getSites();
 
-    methods: {
-        getCheck(type) {
-            if (!this.viewingSite) {
-                return null;
+            this.viewingSiteId = this.sites[0]['site_id'];
+
+            this.startPolling();
+        },
+
+        methods: {
+            getCheck(type) {
+                if (!this.viewingSite) {
+                    return null;
+                }
+
+                return this.viewingSite.checks.find(check => check.type === type);
+            },
+
+            startPolling() {
+                const poller = window.setInterval(async () => {
+                    if (! this.viewingSite) {
+                        return;
+                    }
+
+                    if (this.loading) {
+                        return;
+                    }
+
+                    this.$set(this, 'viewingSite',  await api.getSite(this.viewingSiteId));
+                }, 1000 * 60);
+
+                this.$once('hook:beforeDestroy', () => {
+                    window.clearInterval(poller);
+                });
             }
-
-            return this.viewingSite.checks.find(check => check.type === type);
         }
-    }
-};
+    };
 </script>

@@ -12,15 +12,27 @@ export default {
 
     data() {
         return {
-            enabled: this.check.enabled
-        };
+            enabled: this.check.enabled,
+        }
     },
 
     methods: {
         toggleEnabled() {
-            this.enabled ? api.disableCheck(this.check.id) : api.enableCheck(this.check.id);
+            this.enabled ? this.disableCheck() : this.enableCheck();
 
             this.enabled = !this.enabled;
+        },
+
+        enableCheck() {
+            this.$toasted.show(`The ${this.check.label.toLowerCase()} check has been enabled`, {type: 'success'});
+
+            api.enableCheck(this.check.id);
+        },
+
+        disableCheck() {
+            this.$toasted.show(`The ${this.check.label.toLowerCase()} check has been disabled`, {type: 'success'});
+
+            api.disableCheck(this.check.id);
         }
     }
 };

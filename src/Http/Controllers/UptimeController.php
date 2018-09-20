@@ -12,30 +12,22 @@ use Symfony\Component\Finder\SplFileInfo;
 
 class UptimeController
 {
-    /** @var \OhDear\PhpSdk\OhDear */
-    protected $ohDear;
-
-    public function __construct(OhDear $ohDear)
-    {
-        $this->ohDear = $ohDear;
-    }
-
     public function show(int $siteId)
     {
         return [
-            'uptimePastWeek' => $this->ohDear->uptime(
+            'uptimePastWeek' => app(OhDear::class)->uptime(
                 $siteId,
                 now()->subDays(7)->format('YmdHis'),
                 now()->format('YmdHis'),
                 'day'
             ),
-            'uptimePastYear' => $this->ohDear->uptime(
+            'uptimePastYear' => app(OhDear::class)->uptime(
                 $siteId,
                 now()->subYear()->format('YmdHis'),
                 now()->format('YmdHis'),
                 'month'
             ),
-            'downtimePeriods' => $this->ohDear->downtime(
+            'downtimePeriods' => app(OhDear::class)->downtime(
                 $siteId,
                 now()->subDays(7)->format('YmdHis'),
                 now()->format('YmdHis')

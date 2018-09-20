@@ -2,28 +2,28 @@
 
 namespace OhDear\OhDearTool\Http\Controllers;
 
+use OhDear\PhpSdk\OhDear;
+
 class ChecksController
 {
-    /** @var \OhDear\PhpSdk\OhDear */
-    protected $ohDear;
-
-    public function __construct(OhDear $ohDear)
-    {
-        $this->ohDear = $ohDear;
-    }
-
     public function enable(int $checkId)
     {
-        return $this->ohDear->enableCheck($checkId);
+        app(OhDear::class)->enableCheck($checkId);
+
+        return 'ok';
     }
 
     public function disable(int $checkId)
     {
-        return $this->ohDear->disableCheck($checkId);
+         app(OhDear::class)->disableCheck($checkId);
+
+        return 'ok';
     }
 
     public function requestRun(int $checkId)
     {
-        return $this->ohDear->requestRun($checkId);
+         app(OhDear::class)->requestRun($checkId);
+
+         return 'ok';
     }
 }

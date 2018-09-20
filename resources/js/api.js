@@ -33,19 +33,19 @@ export default {
 
     requestRunCheck(checkId) {
         return window.axios
-            .get(`/nova-vendor/ohdearapp/oh-dear-tool/checks/${checkId}/request-run`)
+            .post(`/nova-vendor/ohdearapp/oh-dear-tool/checks/${checkId}/request-run`)
             .then(response => response.data);
     },
 
     enableCheck(checkId) {
         return window.axios
-            .get(`/nova-vendor/ohdearapp/oh-dear-tool/checks/${checkId}/enable`)
+            .post(`/nova-vendor/ohdearapp/oh-dear-tool/checks/${checkId}/enable`)
             .then(response => response.data);
     },
 
     disableCheck(checkId) {
         return window.axios
-            .get(`/nova-vendor/ohdearapp/oh-dear-tool/checks/${checkId}/disable`)
+            .post(`/nova-vendor/ohdearapp/oh-dear-tool/checks/${checkId}/disable`)
             .then(response => response.data);
     }
 };

@@ -9,7 +9,7 @@ use OhDear\OhDearTool\Http\Controllers\UptimeController;
 
 Route::prefix('sites')->group(function() {
     Route::get('/', [SitesController::class, 'index']);
-    Route::get('sites/{siteId}', [SitesController::class, 'show']);
+    Route::get('{siteId}', [SitesController::class, 'show']);
 });
 
 Route::prefix('checks/{checkId}')->group(function() {

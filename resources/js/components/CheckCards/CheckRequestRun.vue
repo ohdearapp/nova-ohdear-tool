@@ -6,25 +6,23 @@
 </template>
 
 <script>
-import api from '../../api';
+    import api from '../../api';
 
-export default {
-    props: ['check'],
+    export default {
+        props: ['check'],
 
-    data() {
-        return {
-            disabled: false
-        };
-    },
+        data: () => ({
+            disabled: false,
+        }),
 
-    methods: {
-        async requestRun() {
-            await api.requestRunCheck(this.check.id);
+        methods: {
+            async requestRun() {
+                await api.requestRunCheck(this.check.id);
 
-            this.$toasted.show('New run scheduled', { type: 'success' });
+                this.$toasted.show('New run scheduled', {type: 'success'});
 
-            this.disabled = true;
+                this.disabled = true;
+            }
         }
-    }
-};
+    };
 </script>

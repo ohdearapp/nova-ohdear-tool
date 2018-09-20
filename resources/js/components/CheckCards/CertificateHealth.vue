@@ -5,12 +5,12 @@
                 <div v-if="check.enabled">
                     <div v-if="check.latestRunEndedAt">
                         <p v-if="check.latestRunResult === 'succeeded'">
-                            Your certificate is healthy. Oh Dear! last checked
+                            Your certificate is healthy. We last checked
                             <relative-time :datetime="check.latestRunEndedAt"></relative-time>
                             .
                         </p>
                         <p v-else>
-                            Your certificate is unhealthy. Oh Dear! last checked
+                            Your certificate is unhealthy. We last checked
                             <relative-time :datetime="check.latestRunEndedAt"></relative-time>
                             .
                         </p>

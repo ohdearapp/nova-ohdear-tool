@@ -12,18 +12,10 @@ use Symfony\Component\Finder\SplFileInfo;
 
 class BrokenLinksController
 {
-    /** @var \OhDear\PhpSdk\OhDear */
-    protected $ohDear;
-
-    public function __construct(OhDear $ohDear)
-    {
-        $this->ohDear = $ohDear;
-    }
-
     public function show(int $siteId)
     {
         return [
-            'brokenLinks' => $this->ohDear->brokenLinks($siteId),
+            'brokenLinks' => app(OhDear::class)->brokenLinks($siteId),
         ];
     }
 }

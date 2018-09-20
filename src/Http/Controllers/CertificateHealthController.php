@@ -12,18 +12,10 @@ use Symfony\Component\Finder\SplFileInfo;
 
 class CertificateHealthController
 {
-    /** @var \OhDear\PhpSdk\OhDear */
-    protected $ohDear;
-
-    public function __construct(OhDear $ohDear)
-    {
-        $this->ohDear = $ohDear;
-    }
-
     public function show(int $siteId)
     {
         return [
-            'certificate_health' => $this->ohDear->certificateHealth($siteId),
+            'certificate_health' => app(OhDear::class)->certificateHealth($siteId),
         ];
     }
 }

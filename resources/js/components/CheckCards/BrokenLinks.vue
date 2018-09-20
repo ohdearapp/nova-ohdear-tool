@@ -5,18 +5,18 @@
                 <div v-if="check.enabled">
                     <div v-if="check.latestRunEndedAt">
                         <p v-if="check.latestRunResult === 'succeeded'">
-                            No broken links found. Oh Dear! last checked  <relative-time :datetime="check.latestRunEndedAt"></relative-time>.
+                            No broken links found. We last checked  <relative-time :datetime="check.latestRunEndedAt"></relative-time>.
                         </p>
                         <p v-else>
-                            Broken links found. Oh Dear! last checked <relative-time :datetime="check.latestRunEndedAt"></relative-time>.
+                            Broken links found. We last checked <relative-time :datetime="check.latestRunEndedAt"></relative-time>.
                         </p>
                     </div>
                     <p v-else>
-                        Oh Dear! will run this check for the first time soon.
+                        We will run this check for the first time soon.
                     </p>
                 </div>
                 <p v-else>
-                    Oh Dear! is not monitoring broken links.
+                    We is not monitoring broken links.
                 </p>
             </div>
             <div slot="link" slot-scope="check">
