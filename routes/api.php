@@ -15,7 +15,7 @@ Route::prefix('sites')->group(function() {
 Route::prefix('checks/{checkId}')->group(function() {
     Route::post('enable', [ChecksController::class, 'enable']);
     Route::post('disable', [ChecksController::class, 'disable']);
-    Route::post('request-run', [ChecksController::class, 'request-run']);
+    Route::post('request-run', [ChecksController::class, 'requestRun']);
 });
 
 Route::get('uptime/{siteId}', [UptimeController::class, 'show']);
