@@ -14,8 +14,11 @@ class MixedContentController
 {
     public function show(int $siteId)
     {
-        return [
-            'mixedContent' => app(OhDear::class)->mixedContent($siteId),
-        ];
+        return Cache::remember("oh-dear-mixed-content-{$siteId}", 1, function () use ($siteId) {
+
+            return [
+                'mixedContent' => app(OhDear::class)->mixedContent($siteId),
+            ];
+        });
     }
 }

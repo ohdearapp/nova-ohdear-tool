@@ -14,8 +14,11 @@ class CertificateHealthController
 {
     public function show(int $siteId)
     {
-        return [
-            'certificate_health' => app(OhDear::class)->certificateHealth($siteId),
-        ];
+        return Cache::remember("oh-dear-certificate-health-{$siteId}", 1, function () use ($siteId) {
+
+            return [
+                'certificate_health' => app(OhDear::class)->certificateHealth($siteId),
+            ];
+        });
     }
 }

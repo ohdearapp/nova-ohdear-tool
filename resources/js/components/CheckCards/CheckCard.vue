@@ -19,7 +19,9 @@
             <enable-check
               :check="check"
             ></enable-check>
-            <check-request-run
+
+
+            <check-request-run v-if="check.type !== 'certificate_transparency'"
               :check="check"
             ></check-request-run>
         </section>

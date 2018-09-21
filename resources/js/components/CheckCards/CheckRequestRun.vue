@@ -19,9 +19,9 @@ export default {
         async requestRun() {
             this.$toasted.show(`A new run of the ${this.check.label.toLowerCase()} check has been scheduled!`, { type: 'success' });
 
-            await api.requestRunCheck(this.check.id);
-
             this.disabled = true;
+
+            await api.requestRunCheck(this.check.id);
 
             setTimeout(() => this.disabled = false, 1000 * 30);
         }

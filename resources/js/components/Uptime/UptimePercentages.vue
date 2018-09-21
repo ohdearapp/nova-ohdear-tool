@@ -16,12 +16,11 @@
                     <th class="text-left">
                         Percentage
                     </th>
-                    <th></th>
                 </tr>
                 </thead>
                 <tbody>
 
-                <tr v-for="uptime in uptimePastWeek.reverse()">
+                <tr v-for="uptime in reverse(uptimePastWeek)">
                     <td>
                         {{ uptime.datetime | date }}
                     </td>
@@ -33,7 +32,6 @@
             </table>
 
             <h2>Past year</h2>
-
             <table cellpadding="0" cellspacing="0" class="table w-full">
                 <thead>
                 <tr>
@@ -43,12 +41,11 @@
                     <th class="text-left">
                         Percentage
                     </th>
-                    <th></th>
                 </tr>
                 </thead>
                 <tbody>
 
-                <tr v-for="uptime in uptimePastYear.reverse()">
+                <tr v-for="uptime in reverse(uptimePastYear)">
                     <td>
                         {{ uptime.datetime | monthYear }}
                     </td>
@@ -63,19 +60,25 @@
 </template>
 
 <script>
-import moment from 'moment';
+    import moment from 'moment';
 
-export default {
-    props: ['uptimePastWeek', 'uptimePastYear'],
+    export default {
+        props: ['uptimePastWeek', 'uptimePastYear'],
 
-    filters: {
-        date(date) {
-            return moment(date).format('YYYY-MM-DD');
+        filters: {
+            date(date) {
+                return moment(date).format('YYYY-MM-DD');
+            },
+
+            monthYear(date) {
+                return moment(date).format('MMMM YYYY');
+            }
         },
 
-        monthYear(date) {
-            return moment(date).format('MMMM YYYY');
+        methods: {
+            reverse(array) {
+                return [...array].reverse();
+            }
         }
-    }
-};
+    };
 </script>
