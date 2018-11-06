@@ -10,7 +10,7 @@
             <div class="flex-1 mb-4">
                 <slot name="body" v-bind="check"></slot>
             </div>
-            <div>
+            <div v-if="check.enabled">
                 <slot name="link" v-bind="check"></slot>
             </div>
         </div>

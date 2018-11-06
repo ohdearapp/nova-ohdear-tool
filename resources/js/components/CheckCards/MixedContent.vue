@@ -24,8 +24,8 @@
                 </p>
             </div>
             <div slot="link" slot-scope="check">
-                <router-link tag="li" :to="`/oh-dear/mixed-content/${siteId}`">
-                    <a>View mixed content report</a>
+                <router-link tag="a" :to="`/oh-dear/mixed-content/${siteId}`">
+                    View mixed content report
                 </router-link>
             </div>
         </check-card>

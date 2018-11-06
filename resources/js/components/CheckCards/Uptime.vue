@@ -24,8 +24,8 @@
                 </p>
             </div>
             <div slot="link" slot-scope="check">
-                <router-link tag="li" :to="`/oh-dear/uptime/${siteId}`">
-                    <a>View uptime report</a>
+                <router-link tag="a" :to="`/oh-dear/uptime/${siteId}`">
+                    View the latest report
                 </router-link>
             </div>
         </check-card>

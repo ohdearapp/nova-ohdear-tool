@@ -10,11 +10,7 @@
                 </p>
             </div>
             <div slot="link" slot-scope="check">
-                <a
-                  v-if="check.enabled"
-                  class="text-sm text-grey-dark underline"
-                  href="https://ohdear.app/docs/checks/certificate-transparency"
-                >
+                <a href="https://ohdear.app/docs/checks/certificate-transparency">
                     Read more about certificate transparancy
                 </a>
             </div>

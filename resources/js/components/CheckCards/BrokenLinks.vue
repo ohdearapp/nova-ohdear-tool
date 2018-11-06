@@ -20,8 +20,8 @@
                 </p>
             </div>
             <div slot="link" slot-scope="check">
-                <router-link tag="li" :to="`/oh-dear/broken-links/${siteId}`">
-                    <a>View broken links report</a>
+                <router-link tag="a" :to="`/oh-dear/broken-links/${siteId}`">
+                    View the latest report
                 </router-link>
             </div>
         </check-card>

@@ -1,40 +1,44 @@
 <template>
     <loading-view :loading="loading">
-        <div>
-            <heading class="mb-6">
-                Oh Dear
-            </heading>
+        <heading class="mb-6">
+            Oh Dear
+        </heading>
 
+        <div class="flex flex-wrap -m-6">
             <uptime
-              v-if="uptimeCheck"
-              :check="uptimeCheck"
-              :site-id="viewingSiteId"
+                v-if="uptimeCheck"
+                :check="uptimeCheck"
+                :site-id="viewingSiteId"
+                class="p-6 w-1/2"
             ></uptime>
 
-            <certificate-health
-              v-if="certificateHealthCheck"
-              :check="certificateHealthCheck"
-              :site-id="viewingSiteId"
-            ></certificate-health>
-
             <broken-links
-              v-if="brokenLinksCheck"
-              :check="brokenLinksCheck"
-              :site-id="viewingSiteId"
+                v-if="brokenLinksCheck"
+                :check="brokenLinksCheck"
+                :site-id="viewingSiteId"
+                class="p-6 w-1/2"
             ></broken-links>
 
+            <certificate-health
+                v-if="certificateHealthCheck"
+                :check="certificateHealthCheck"
+                :site-id="viewingSiteId"
+                class="p-6 w-1/2"
+            ></certificate-health>
+
             <mixed-content
-              v-if="mixedContentCheck"
-              :check="mixedContentCheck"
-              :site-id="viewingSiteId"
+                v-if="mixedContentCheck"
+                :check="mixedContentCheck"
+                :site-id="viewingSiteId"
+                class="p-6 w-1/2"
             ></mixed-content>
 
             <certificate-transparancy
-              v-if="certificateTransparancyCheck"
-              :check="certificateTransparancyCheck"
-              :site-id="viewingSiteId"
+                v-if="certificateTransparancyCheck"
+                :check="certificateTransparancyCheck"
+                :site-id="viewingSiteId"
+                class="p-6 w-1/2"
             ></certificate-transparancy>
-
         </div>
     </loading-view>
 </template>
