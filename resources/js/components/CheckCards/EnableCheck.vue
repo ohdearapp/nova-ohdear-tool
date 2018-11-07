@@ -1,7 +1,8 @@
 <template>
-    <label class="text-sm">
-        <input type="checkbox" class="check-toggle" @change="toggleEnabled" :checked="enabled">
-    </label>
+    <checkbox
+        :checked="enabled"
+        @input="toggleEnabled"
+    ></checkbox>
 </template>
 
 <script>

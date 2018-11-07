@@ -17,11 +17,10 @@
 
         <section class="mt-4 flex justify-between">
             <enable-check
-              :check="check"
+                :check="check"
             ></enable-check>
-
-
-            <check-request-run v-if="check.type !== 'certificate_transparency'"
+            <check-request-run
+                v-if="check.type !== 'certificate_transparency'"
               :check="check"
             ></check-request-run>
         </section>
