@@ -65,11 +65,6 @@ export default {
     },
 
     computed: {
-        uptimeCheck() {
-            console.log('getting uptime check');
-            return this.getCheck('uptime');
-        },
-
         certificateHealthCheck() {
             return this.getCheck('certificate_health');
         },
@@ -100,7 +95,8 @@ export default {
         sites: [],
         viewingSiteId: null,
         viewingSite: null,
-        loading: true
+        loading: true,
+        uptimeCheck: null,
     }),
 
     async created() {
@@ -112,6 +108,10 @@ export default {
     },
 
     methods: {
+        uptimeAsAFunction() {
+            this.uptimeCheck = this.getCheck('uptime');
+        },
+
         getCheck(type) {
             if (!this.viewingSite) {
                 return null;
@@ -143,6 +143,9 @@ export default {
             let site = await api.getSite(this.viewingSiteId);
 
             this.viewingSite = site;
+
+            this.uptimeCheck = this.getCheck('uptime');
+            console.log(this.uptimeCheck);
         }
     }
 };
