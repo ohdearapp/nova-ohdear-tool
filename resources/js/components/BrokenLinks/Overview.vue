@@ -1,9 +1,7 @@
 <template>
     <loading-view :loading="loading">
-        <div>
-            <to-oh-dear-overview></to-oh-dear-overview>
-            <broken-links :broken-links="brokenLinks"></broken-links>
-        </div>
+        <to-oh-dear-overview></to-oh-dear-overview>
+        <broken-links :broken-links="brokenLinks"></broken-links>
     </loading-view>
 </template>
 
