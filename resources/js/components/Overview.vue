@@ -65,6 +65,10 @@ export default {
     },
 
     computed: {
+        uptimeCheck() {
+            return this.getCheck('uptime');
+        },
+
         certificateHealthCheck() {
             return this.getCheck('certificate_health');
         },
@@ -76,6 +80,7 @@ export default {
         mixedContentCheck() {
             return this.getCheck('mixed_content');
         },
+
         certificateTransparancyCheck() {
             return this.getCheck('certificate_transparency');
         }
@@ -96,7 +101,6 @@ export default {
         viewingSiteId: null,
         viewingSite: null,
         loading: true,
-        uptimeCheck: null,
     }),
 
     async created() {
@@ -116,7 +120,6 @@ export default {
             if (!this.viewingSite) {
                 return null;
             }
-            console.log('getting check!!');
 
             return this.viewingSite.checks.find(check => check.type === type);
         },
@@ -143,9 +146,6 @@ export default {
             let site = await api.getSite(this.viewingSiteId);
 
             this.viewingSite = site;
-
-            this.uptimeCheck = this.getCheck('uptime');
-            console.log(this.uptimeCheck);
         }
     }
 };

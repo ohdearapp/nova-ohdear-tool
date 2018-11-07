@@ -1,5 +1,5 @@
 <template>
-    <checkbox :checked="enabled" @input="toggleEnabled"></checkbox>
+    <checkbox :checked="check.enabled" @input="toggleEnabled"></checkbox>
 </template>
 
 <script>
@@ -10,19 +10,11 @@ export default {
 
     inject: ['refreshSite'],
 
-    data() {
-        return {
-            enabled: this.check.enabled
-        };
-    },
-
     methods: {
         toggleEnabled() {
-            this.enabled ? this.disableCheck() : this.enableCheck();
+            this.check.enabled ? this.disableCheck() : this.enableCheck();
 
             this.refreshSite();
-
-            //this.enabled = !this.enabled;
         },
 
         enableCheck() {

@@ -42,6 +42,12 @@ export default {
         check: null
     }),
 
+    watch: {
+        async initCheck() {
+            this.check = new Check(this.initCheck);
+        }
+    },
+
     components: {
         EnableCheck,
         CheckResult,

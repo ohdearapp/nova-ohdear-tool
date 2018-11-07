@@ -5,7 +5,7 @@ export default {
 
     getSite(siteId) {
         return window.axios
-            .get(`/nova-vendor/ohdearapp/oh-dear-tool/sites/${siteId}?rand=`+Math.random().toString(36).substring(2, 15) )
+            .get(`/nova-vendor/ohdearapp/oh-dear-tool/sites/${siteId}`)
             .then(response => response.data.site);
     },
 
