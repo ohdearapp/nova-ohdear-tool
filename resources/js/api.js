@@ -5,7 +5,7 @@ export default {
 
     getSite(siteId) {
         return window.axios
-            .get(`/nova-vendor/ohdearapp/oh-dear-tool/sites/${siteId}`)
+            .get(`/nova-vendor/ohdearapp/oh-dear-tool/sites/${siteId}`, {headers: {'Cache-Control': 'no-cache'}})
             .then(response => response.data.site);
     },
 

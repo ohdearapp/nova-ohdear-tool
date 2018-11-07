@@ -11,6 +11,8 @@ import api from '../../api';
 export default {
     props: ['check'],
 
+    inject: ['refreshSite'],
+
     data: () => ({
         disabled: false
     }),
@@ -25,7 +27,10 @@ export default {
 
             await api.requestRunCheck(this.check.id);
 
-            setTimeout(() => (this.disabled = false), 1000 * 30);
+            setTimeout(() => {
+                this.refreshSite();
+                this.disabled = false;
+            }, 1000 * 10);
         }
     }
 };
