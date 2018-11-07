@@ -7,7 +7,7 @@
             <p v-else>We will not notify you when someone issues a new certificate for your site.</p>
         </div>
         <div slot="link" slot-scope="check">
-            <a href="https://ohdear.app/docs/checks/certificate-transparency" class="text-primary dim no-underline">
+            <a href="https://ohdear.app/docs/general/certificate-transparency" class="text-primary dim no-underline">
                 Read more about certificate transparancy
             </a>
         </div>
