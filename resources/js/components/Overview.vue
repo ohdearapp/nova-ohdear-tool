@@ -58,8 +58,15 @@ export default {
         CertificateTransparancy
     },
 
+    provide() {
+        return {
+            refreshSite:() => this.refreshSite(),
+        }
+    },
+
     computed: {
         uptimeCheck() {
+            console.log('getting uptime check');
             return this.getCheck('uptime');
         },
 
@@ -83,7 +90,7 @@ export default {
         async viewingSiteId() {
             this.loading = true;
 
-            this.$set(this, 'viewingSite', await api.getSite(this.viewingSiteId));
+            await this.refreshSite();
 
             this.loading = false;
         }
@@ -109,6 +116,7 @@ export default {
             if (!this.viewingSite) {
                 return null;
             }
+            console.log('getting check!!');
 
             return this.viewingSite.checks.find(check => check.type === type);
         },
@@ -123,12 +131,18 @@ export default {
                     return;
                 }
 
-                this.$set(this, 'viewingSite', await api.getSite(this.viewingSiteId));
+                await this.refreshSite();
             }, 1000 * 60);
 
             this.$once('hook:beforeDestroy', () => {
                 window.clearInterval(poller);
             });
+        },
+
+        async refreshSite() {
+            let site = await api.getSite(this.viewingSiteId);
+
+            this.viewingSite = site;
         }
     }
 };

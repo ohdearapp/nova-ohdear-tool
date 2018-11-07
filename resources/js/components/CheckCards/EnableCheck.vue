@@ -8,6 +8,8 @@ import api from '../../api';
 export default {
     props: ['check'],
 
+    inject: ['refreshSite'],
+
     data() {
         return {
             enabled: this.check.enabled
@@ -18,7 +20,9 @@ export default {
         toggleEnabled() {
             this.enabled ? this.disableCheck() : this.enableCheck();
 
-            this.enabled = !this.enabled;
+            this.refreshSite();
+
+            //this.enabled = !this.enabled;
         },
 
         enableCheck() {
