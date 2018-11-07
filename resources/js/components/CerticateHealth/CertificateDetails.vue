@@ -1,8 +1,6 @@
 <template>
     <div>
-        <heading class="mb-6">
-            Certificate details
-        </heading>
+        <heading class="mb-6"> Certificate details </heading>
         <card class="mb-6">
             <ul>
                 <li>Issuer: {{ certificateDetails.issuer }}</li>

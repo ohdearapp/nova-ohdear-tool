@@ -5,24 +5,20 @@
                 <div v-if="check.enabled">
                     <div v-if="check.latestRunEndedAt">
                         <p v-if="check.latestRunResult === 'succeeded'">
-                            No broken links found. We last checked  <relative-time :datetime="check.latestRunEndedAt"></relative-time>.
+                            No broken links found. We last checked
+                            <relative-time :datetime="check.latestRunEndedAt"></relative-time>.
                         </p>
                         <p v-else>
-                            Broken links found. We last checked <relative-time :datetime="check.latestRunEndedAt"></relative-time>.
+                            Broken links found. We last checked
+                            <relative-time :datetime="check.latestRunEndedAt"></relative-time>.
                         </p>
                     </div>
-                    <p v-else>
-                        We will run this check for the first time soon.
-                    </p>
+                    <p v-else>We will run this check for the first time soon.</p>
                 </div>
-                <p v-else>
-                    We is not monitoring broken links.
-                </p>
+                <p v-else>We is not monitoring broken links.</p>
             </div>
             <div slot="link" slot-scope="check">
-                <router-link tag="a" :to="`/oh-dear/broken-links/${siteId}`">
-                    View the latest report
-                </router-link>
+                <router-link tag="a" :to="`/oh-dear/broken-links/${siteId}`"> View the latest report </router-link>
             </div>
         </check-card>
     </div>

@@ -1,8 +1,5 @@
 <template>
-    <checkbox
-        :checked="enabled"
-        @input="toggleEnabled"
-    ></checkbox>
+    <checkbox :checked="enabled" @input="toggleEnabled"></checkbox>
 </template>
 
 <script>

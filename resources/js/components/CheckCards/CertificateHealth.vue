@@ -15,13 +15,9 @@
                             .
                         </p>
                     </div>
-                    <p v-else>
-                        We will run this check for the first time soon.
-                    </p>
+                    <p v-else>We will run this check for the first time soon.</p>
                 </div>
-                <p v-else>
-                    We are not monitoring the certificate of your site.
-                </p>
+                <p v-else>We are not monitoring the certificate of your site.</p>
             </div>
             <div slot="link" slot-scope="check">
                 <router-link tag="a" :to="`/oh-dear/certificate-health/${siteId}`">

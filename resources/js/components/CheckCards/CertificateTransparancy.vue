@@ -5,9 +5,7 @@
                 <p v-if="check.enabled">
                     We'll notify you when someone issues a new certificate for your site. This check is always running.
                 </p>
-                <p v-else>
-                    We will not notify you when someone issues a new certificate for your site.
-                </p>
+                <p v-else>We will not notify you when someone issues a new certificate for your site.</p>
             </div>
             <div slot="link" slot-scope="check">
                 <a href="https://ohdear.app/docs/checks/certificate-transparency">

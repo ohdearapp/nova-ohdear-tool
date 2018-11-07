@@ -15,18 +15,12 @@
                             .
                         </p>
                     </div>
-                    <p v-else>
-                        We will run this check for the first time soon.
-                    </p>
+                    <p v-else>We will run this check for the first time soon.</p>
                 </div>
-                <p v-else>
-                    We are not monitoring mixed content.
-                </p>
+                <p v-else>We are not monitoring mixed content.</p>
             </div>
             <div slot="link" slot-scope="check">
-                <router-link tag="a" :to="`/oh-dear/mixed-content/${siteId}`">
-                    View mixed content report
-                </router-link>
+                <router-link tag="a" :to="`/oh-dear/mixed-content/${siteId}`"> View mixed content report </router-link>
             </div>
         </check-card>
     </div>

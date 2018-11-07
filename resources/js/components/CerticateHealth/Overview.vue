@@ -2,17 +2,11 @@
     <loading-view :loading="loading">
         <to-oh-dear-overview></to-oh-dear-overview>
 
-        <certificate-details
-          :certificate-details="certificateDetails"
-        ></certificate-details>
+        <certificate-details :certificate-details="certificateDetails"></certificate-details>
 
-        <certificate-checks
-          :certificate-checks="certificateChecks"
-        ></certificate-checks>
+        <certificate-checks :certificate-checks="certificateChecks"></certificate-checks>
 
-        <certificate-chain-issuers
-          :certificate-chain-issuers="certificateChainIssuers"
-        ></certificate-chain-issuers>
+        <certificate-chain-issuers :certificate-chain-issuers="certificateChainIssuers"></certificate-chain-issuers>
     </loading-view>
 </template>
 

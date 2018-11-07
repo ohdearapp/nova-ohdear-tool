@@ -4,13 +4,11 @@
 
         <div>
             <uptime-percentages
-              :uptime-past-week="uptimePastWeek"
-              :uptime-past-year="uptimePastYear"
+                :uptime-past-week="uptimePastWeek"
+                :uptime-past-year="uptimePastYear"
             ></uptime-percentages>
 
-            <downtime-periods
-              :downtime-periods="downtimePeriods"
-            ></downtime-periods>
+            <downtime-periods :downtime-periods="downtimePeriods"></downtime-periods>
         </div>
     </loading-view>
 </template>

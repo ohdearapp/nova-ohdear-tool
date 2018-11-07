@@ -1,13 +1,6 @@
 <template>
-    <span
-        :is="tag"
-        class="check-result"
-        :class="className"
-    >
-        {{ contents }}
-    </span>
+    <span :is="tag" class="check-result" :class="className"> {{ contents }} </span>
 </template>
-
 
 <script>
 export default {

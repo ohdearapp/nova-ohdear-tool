@@ -15,23 +15,16 @@
                             .
                         </p>
                     </div>
-                    <p v-else>
-                        We will run this check for the first time soon.
-                    </p>
+                    <p v-else>We will run this check for the first time soon.</p>
                 </div>
-                <p v-else>
-                    We are not monitoring your site's uptime.
-                </p>
+                <p v-else>We are not monitoring your site's uptime.</p>
             </div>
             <div slot="link" slot-scope="check">
-                <router-link tag="a" :to="`/oh-dear/uptime/${siteId}`">
-                    View the latest report
-                </router-link>
+                <router-link tag="a" :to="`/oh-dear/uptime/${siteId}`"> View the latest report </router-link>
             </div>
         </check-card>
     </div>
 </template>
-
 
 <script>
 import CheckCard from './CheckCard';

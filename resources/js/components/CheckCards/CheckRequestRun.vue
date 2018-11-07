@@ -1,6 +1,6 @@
 <template>
     <div class="text-xs text-grey">
-        <button v-if="! disabled" @click="requestRun()" class="outline-none hover:underline">Request new run</button>
+        <button v-if="!disabled" @click="requestRun();" class="outline-none hover:underline">Request new run</button>
         <span v-else>Run requested</span>
     </div>
 </template>
@@ -17,13 +17,15 @@ export default {
 
     methods: {
         async requestRun() {
-            this.$toasted.show(`A new run of the ${this.check.label.toLowerCase()} check has been scheduled!`, { type: 'success' });
+            this.$toasted.show(`A new run of the ${this.check.label.toLowerCase()} check has been scheduled!`, {
+                type: 'success'
+            });
 
             this.disabled = true;
 
             await api.requestRunCheck(this.check.id);
 
-            setTimeout(() => this.disabled = false, 1000 * 30);
+            setTimeout(() => (this.disabled = false), 1000 * 30);
         }
     }
 };

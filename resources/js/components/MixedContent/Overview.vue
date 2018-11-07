@@ -2,9 +2,7 @@
     <loading-view :loading="loading">
         <to-oh-dear-overview></to-oh-dear-overview>
 
-        <mixed-content
-          :mixed-content="mixedContent"
-        ></mixed-content>
+        <mixed-content :mixed-content="mixedContent"></mixed-content>
     </loading-view>
 </template>
 

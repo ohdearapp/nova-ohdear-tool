@@ -1,5 +1,3 @@
 <template>
-    <router-link to="/oh-dear">
-        <a>Back to overview</a>
-    </router-link>
+    <router-link to="/oh-dear"> <a>Back to overview</a> </router-link>
 </template>

@@ -2,9 +2,7 @@
     <loading-view :loading="loading">
         <to-oh-dear-overview></to-oh-dear-overview>
 
-        <broken-links
-          :broken-links="brokenLinks"
-        ></broken-links>
+        <broken-links :broken-links="brokenLinks"></broken-links>
     </loading-view>
 </template>
 

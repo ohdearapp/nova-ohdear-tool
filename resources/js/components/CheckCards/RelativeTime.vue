@@ -1,8 +1,7 @@
 <template>
-    <time
-      :datetime="$toNovaTimezone(datetime)"
-      :title="$toNovaTimezone(datetime)"
-    >{{ $toNovaTimezoneRelative(datetime) }}</time>
+    <time :datetime="$toNovaTimezone(datetime)" :title="$toNovaTimezone(datetime)">{{
+        $toNovaTimezoneRelative(datetime)
+    }}</time>
 </template>
 
 <script>

@@ -1,16 +1,9 @@
 <template>
     <loading-view :loading="loading">
-        <heading class="mb-6">
-            Oh Dear
-        </heading>
+        <heading class="mb-6"> Oh Dear </heading>
 
         <div class="flex flex-wrap -m-6">
-            <uptime
-                v-if="uptimeCheck"
-                :check="uptimeCheck"
-                :site-id="viewingSiteId"
-                class="p-6 w-1/2"
-            ></uptime>
+            <uptime v-if="uptimeCheck" :check="uptimeCheck" :site-id="viewingSiteId" class="p-6 w-1/2"></uptime>
 
             <broken-links
                 v-if="brokenLinksCheck"
