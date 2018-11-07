@@ -36,7 +36,7 @@ export default {
                 return 'Disabled';
             }
 
-            if (this.check.alwaysRunning && this.check.enabled) {
+            if (this.check.type === 'certificate_transparency' && this.check.enabled) {
                 return 'Always running';
             }
 

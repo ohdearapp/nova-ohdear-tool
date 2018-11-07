@@ -10,6 +10,10 @@ class Check {
             return false;
         }
 
+        if (this.type === 'certificate_transparency') {
+            return false;
+        }
+
         if (this.latestRunResult === "pending") {
             return false;
         }
