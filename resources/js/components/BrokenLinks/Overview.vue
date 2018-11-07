@@ -1,20 +1,21 @@
 <template>
     <loading-view :loading="loading">
-        <to-oh-dear-overview></to-oh-dear-overview>
-
-        <broken-links :broken-links="brokenLinks"></broken-links>
+        <div>
+            <to-oh-dear-overview></to-oh-dear-overview>
+            <broken-links :broken-links="brokenLinks"></broken-links>
+        </div>
     </loading-view>
 </template>
 
 <script>
-import ToOhDearOverview from '../ToOhDearOverview';
 import BrokenLinks from './BrokenLinks';
+import ToOhDearOverview from '../ToOhDearOverview';
 import api from '../../api';
 
 export default {
     components: {
+        BrokenLinks,
         ToOhDearOverview,
-        BrokenLinks
     },
 
     props: ['siteId'],

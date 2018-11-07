@@ -1,29 +1,25 @@
 <template>
     <loading-view :loading="loading">
         <to-oh-dear-overview></to-oh-dear-overview>
-
-        <div>
-            <uptime-percentages
-                :uptime-past-week="uptimePastWeek"
-                :uptime-past-year="uptimePastYear"
-            ></uptime-percentages>
-
-            <downtime-periods :downtime-periods="downtimePeriods"></downtime-periods>
-        </div>
+        <uptime-percentages
+            :uptime-past-week="uptimePastWeek"
+            :uptime-past-year="uptimePastYear"
+        ></uptime-percentages>
+        <downtime-periods :downtime-periods="downtimePeriods"></downtime-periods>
     </loading-view>
 </template>
 
 <script>
-import ToOhDearOverview from '../ToOhDearOverview';
 import DowntimePeriods from './DowntimePeriods';
 import UptimePercentages from './UptimePercentages';
+import ToOhDearOverview from '../ToOhDearOverview';
 import api from '../../api';
 
 export default {
     components: {
-        ToOhDearOverview,
         DowntimePeriods,
-        UptimePercentages
+        UptimePercentages,
+        ToOhDearOverview,
     },
 
     props: ['siteId'],

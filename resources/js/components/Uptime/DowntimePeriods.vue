@@ -1,14 +1,13 @@
 <template>
     <div>
-        <heading class="mb-6"> Downtime periods </heading>
-        <card class="mb-6">
+        <heading class="mb-3">Downtime periods</heading>
+        <card class="overflow-hidden">
             <table cellpadding="0" cellspacing="0" class="table w-full">
                 <thead>
                     <tr>
                         <th class="text-left">Started at</th>
                         <th class="text-left">Ended at</th>
                         <th class="text-left">Duration</th>
-                        <th></th>
                     </tr>
                 </thead>
                 <tbody>

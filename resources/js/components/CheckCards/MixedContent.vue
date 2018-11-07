@@ -1,29 +1,24 @@
 <template>
-    <div>
-        <check-card :init-check="check">
-            <div slot="body" slot-scope="check">
-                <div v-if="check.enabled">
-                    <div v-if="check.latestRunEndedAt">
-                        <p v-if="check.latestRunResult === 'succeeded'">
-                            No mixed content found, your site is secure. We last checked
-                            <relative-time :datetime="check.latestRunEndedAt"></relative-time>
-                            .
-                        </p>
-                        <p v-else>
-                            Mixed content found, your site is insecure. We last checked
-                            <relative-time :datetime="check.latestRunEndedAt"></relative-time>
-                            .
-                        </p>
-                    </div>
-                    <p v-else>We will run this check for the first time soon.</p>
+    <check-card :init-check="check" :url="`/oh-dear/mixed-content/${siteId}`">
+        <div slot="body" slot-scope="check">
+            <div v-if="check.enabled">
+                <div v-if="check.latestRunEndedAt">
+                    <p v-if="check.latestRunResult === 'succeeded'">
+                        No mixed content found, your site is secure. We last checked
+                        <relative-time :datetime="check.latestRunEndedAt"></relative-time>
+                        .
+                    </p>
+                    <p v-else>
+                        Mixed content found, your site is insecure. We last checked
+                        <relative-time :datetime="check.latestRunEndedAt"></relative-time>
+                        .
+                    </p>
                 </div>
-                <p v-else>We are not monitoring mixed content.</p>
+                <p v-else>We will run this check for the first time soon.</p>
             </div>
-            <div slot="link" slot-scope="check">
-                <router-link tag="a" :to="`/oh-dear/mixed-content/${siteId}`"> View mixed content report </router-link>
-            </div>
-        </check-card>
-    </div>
+            <p v-else>We are not monitoring mixed content.</p>
+        </div>
+    </check-card>
 </template>
 
 <script>

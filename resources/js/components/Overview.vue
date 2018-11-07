@@ -1,37 +1,42 @@
 <template>
     <loading-view :loading="loading">
-        <heading class="mb-6"> Oh Dear </heading>
-
+        <heading class="mb-3">Oh Dear!</heading>
         <div class="flex flex-wrap -m-6">
-            <uptime v-if="uptimeCheck" :check="uptimeCheck" :site-id="viewingSiteId" class="p-6 w-1/2"></uptime>
-
-            <broken-links
-                v-if="brokenLinksCheck"
-                :check="brokenLinksCheck"
-                :site-id="viewingSiteId"
-                class="p-6 w-1/2"
-            ></broken-links>
-
-            <certificate-health
-                v-if="certificateHealthCheck"
-                :check="certificateHealthCheck"
-                :site-id="viewingSiteId"
-                class="p-6 w-1/2"
-            ></certificate-health>
-
-            <mixed-content
-                v-if="mixedContentCheck"
-                :check="mixedContentCheck"
-                :site-id="viewingSiteId"
-                class="p-6 w-1/2"
-            ></mixed-content>
-
-            <certificate-transparancy
-                v-if="certificateTransparancyCheck"
-                :check="certificateTransparancyCheck"
-                :site-id="viewingSiteId"
-                class="p-6 w-1/2"
-            ></certificate-transparancy>
+            <div class="p-6 w-1/2">
+                <uptime
+                    v-if="uptimeCheck"
+                    :check="uptimeCheck"
+                    :site-id="viewingSiteId"
+                ></uptime>
+            </div>
+            <div class="p-6 w-1/2">
+                <broken-links
+                    v-if="brokenLinksCheck"
+                    :check="brokenLinksCheck"
+                    :site-id="viewingSiteId"
+                ></broken-links>
+            </div>
+            <div class="p-6 w-1/2">
+                <certificate-health
+                    v-if="certificateHealthCheck"
+                    :check="certificateHealthCheck"
+                    :site-id="viewingSiteId"
+                ></certificate-health>
+            </div>
+            <div class="p-6 w-1/2">
+                <mixed-content
+                    v-if="mixedContentCheck"
+                    :check="mixedContentCheck"
+                    :site-id="viewingSiteId"
+                ></mixed-content>
+            </div>
+            <div class="p-6 w-1/2">
+                <certificate-transparancy
+                    v-if="certificateTransparancyCheck"
+                    :check="certificateTransparancyCheck"
+                    :site-id="viewingSiteId"
+                ></certificate-transparancy>
+            </div>
         </div>
     </loading-view>
 </template>

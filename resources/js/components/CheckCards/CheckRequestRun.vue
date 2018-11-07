@@ -1,7 +1,7 @@
 <template>
-    <div class="text-xs text-grey">
-        <button v-if="!disabled" @click="requestRun();" class="outline-none hover:underline">Request new run</button>
-        <span v-else>Run requested</span>
+    <div>
+        <button v-if="!disabled" @click="requestRun" class="text-primary dim no-underline">Request new run</button>
+        <span v-else class="text-80">Run requested</span>
     </div>
 </template>
 

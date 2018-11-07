@@ -1,29 +1,33 @@
 <template>
     <loading-view :loading="loading">
         <to-oh-dear-overview></to-oh-dear-overview>
-
-        <certificate-details :certificate-details="certificateDetails"></certificate-details>
-
-        <certificate-checks :certificate-checks="certificateChecks"></certificate-checks>
-
-        <certificate-chain-issuers :certificate-chain-issuers="certificateChainIssuers"></certificate-chain-issuers>
+        <certificate-details
+            :certificate-details="certificateDetails"
+            class="mb-8"
+        ></certificate-details>
+        <certificate-checks
+            :certificate-checks="certificateChecks"
+            class="mb-8"
+        ></certificate-checks>
+        <certificate-chain-issuers
+            :certificate-chain-issuers="certificateChainIssuers"
+        ></certificate-chain-issuers>
     </loading-view>
 </template>
 
 <script>
-import ToOhDearOverview from '../ToOhDearOverview';
 import CertificateDetails from './CertificateDetails';
 import CertificateChecks from './CertificateChecks';
 import CertificateChainIssuers from './CertificateChainIssuers';
-
+import ToOhDearOverview from '../ToOhDearOverview';
 import api from '../../api';
 
 export default {
     components: {
-        ToOhDearOverview,
         CertificateDetails,
         CertificateChecks,
-        CertificateChainIssuers
+        CertificateChainIssuers,
+        ToOhDearOverview,
     },
 
     props: ['siteId'],

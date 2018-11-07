@@ -1,36 +1,36 @@
 <template>
     <div>
-        <heading class="mb-6"> Uptime percentages </heading>
-        <card class="mb-6">
-            <h2>Past 7 days</h2>
-
+        <heading class="mb-3">Uptime in the past 7 days</heading>
+        <card class="mb-8 overflow-hidden">
             <table cellpadding="0" cellspacing="0" class="table w-full">
                 <thead>
                     <tr>
-                        <th class="text-left">Time</th>
-                        <th class="text-left">Percentage</th>
+                        <th class="text-left">Date</th>
+                        <th class="text-left">Uptime</th>
                     </tr>
                 </thead>
                 <tbody>
                     <tr v-for="uptime in reverse(uptimePastWeek)">
                         <td>{{ uptime.datetime | date }}</td>
-                        <td>{{ uptime.uptimePercentage }}</td>
+                        <td>{{ uptime.uptimePercentage }}%</td>
                     </tr>
                 </tbody>
             </table>
+        </card>
 
-            <h2>Past year</h2>
+        <heading class="mb-3">Uptime in the past year</heading>
+        <card class="mb-8 overflow-hidden">
             <table cellpadding="0" cellspacing="0" class="table w-full">
                 <thead>
                     <tr>
-                        <th class="text-left">Time</th>
-                        <th class="text-left">Percentage</th>
+                        <th class="text-left">Date</th>
+                        <th class="text-left">Uptime</th>
                     </tr>
                 </thead>
                 <tbody>
                     <tr v-for="uptime in reverse(uptimePastYear)">
                         <td>{{ uptime.datetime | monthYear }}</td>
-                        <td>{{ uptime.uptimePercentage }}</td>
+                        <td>{{ uptime.uptimePercentage }}%</td>
                     </tr>
                 </tbody>
             </table>
