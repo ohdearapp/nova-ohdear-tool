@@ -2,8 +2,8 @@
 
 namespace OhDear\OhDearTool\Http\Controllers;
 
-use Illuminate\Support\Facades\Cache;
 use OhDear\PhpSdk\OhDear;
+use Illuminate\Support\Facades\Cache;
 
 class ChecksController
 {
@@ -20,16 +20,16 @@ class ChecksController
     {
         $this->removeCache();
 
-         app(OhDear::class)->disableCheck($checkId);
+        app(OhDear::class)->disableCheck($checkId);
 
         return 'ok';
     }
 
     public function requestRun(int $checkId)
     {
-         app(OhDear::class)->requestRun($checkId);
+        app(OhDear::class)->requestRun($checkId);
 
-         return 'ok';
+        return 'ok';
     }
 
     public function removeCache()

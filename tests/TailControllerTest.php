@@ -3,8 +3,6 @@
 namespace OhDear\OhDearTool\Tests;
 
 use OhDear\OhDearTool\Http\Controllers\SitesController;
-use OhDear\OhDearTool\OhDearTool;
-use Symfony\Component\HttpFoundation\Response;
 
 class TailControllerTest extends TestCase
 {
@@ -15,7 +13,7 @@ class TailControllerTest extends TestCase
         $this->app
             ->when(SitesController::class)
             ->needs('$logDirectory')
-            ->give(__DIR__ . '/stubs');
+            ->give(__DIR__.'/stubs');
     }
 
     /** @test */
@@ -37,7 +35,7 @@ class TailControllerTest extends TestCase
             ->postJson('nova-vendor/ohdearapp/tail-tool', ['afterLineNumber' => 8])
             ->assertSuccessful()
             ->assertJson([
-                'text' => 'nine' . PHP_EOL . 'ten' . PHP_EOL,
+                'text' => 'nine'.PHP_EOL.'ten'.PHP_EOL,
                 'lastRetrievedLineNumber' => 10,
             ]);
     }
