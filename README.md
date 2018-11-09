@@ -12,7 +12,7 @@ You can also enable / disable a certain check and request new runs.
 
 ## Documentation
 
-The full documentation inlcuing installation instructions can be found in [the docs section of Oh Dear!](http://ohdear.app.test/docs/nova-tool/introduction)
+The full documentation inlcuing installation instructions can be found in [the docs section of Oh Dear!](http://ohdear.app/docs/nova-tool/introduction)
 
 ## Credits
 
