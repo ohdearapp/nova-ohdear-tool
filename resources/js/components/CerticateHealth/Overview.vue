@@ -27,7 +27,7 @@ export default {
         CertificateDetails,
         CertificateChecks,
         CertificateChainIssuers,
-        ToOhDearOverview,
+        ToOhDearOverview
     },
 
     props: ['siteId'],

@@ -13,7 +13,7 @@ import api from '../../api';
 export default {
     components: {
         MixedContent,
-        ToOhDearOverview,
+        ToOhDearOverview
     },
 
     props: ['siteId'],

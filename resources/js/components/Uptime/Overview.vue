@@ -19,7 +19,7 @@ export default {
     components: {
         DowntimePeriods,
         UptimePercentages,
-        ToOhDearOverview,
+        ToOhDearOverview
     },
 
     props: ['siteId'],

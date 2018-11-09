@@ -60,8 +60,8 @@ export default {
 
     provide() {
         return {
-            refreshSite:() => this.getSite(),
-        }
+            refreshSite: () => this.getSite()
+        };
     },
 
     computed: {
@@ -88,7 +88,7 @@ export default {
 
     data: () => ({
         site: null,
-        loading: true,
+        loading: true
     }),
 
     async created() {
@@ -130,7 +130,7 @@ export default {
             }
 
             return this.site.checks.find(check => check.type === type);
-        },
+        }
     }
 };
 </script>

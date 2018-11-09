@@ -13,7 +13,7 @@ import api from '../../api';
 export default {
     components: {
         BrokenLinks,
-        ToOhDearOverview,
+        ToOhDearOverview
     },
 
     props: ['siteId'],
