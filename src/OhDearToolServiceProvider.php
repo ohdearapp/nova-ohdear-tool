@@ -12,6 +12,10 @@ class OhDearToolServiceProvider extends ServiceProvider
 {
     public function boot()
     {
+        $this->publishes([
+            __DIR__.'/../config/nova-ohdear-tool.php' => config_path('nova-ohdear-tool.php'),
+        ], 'config');
+
         $this->loadViewsFrom(__DIR__ . '/../resources/views', 'OhDearTool');
 
         $this->app->booted(function () {
