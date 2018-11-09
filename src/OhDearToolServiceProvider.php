@@ -2,11 +2,10 @@
 
 namespace OhDear\OhDearTool;
 
+use OhDear\PhpSdk\OhDear;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\ServiceProvider;
-use OhDear\OhDearTool\Controllers\TailController;
 use OhDear\OhDearTool\Http\Middleware\Authorize;
-use OhDear\PhpSdk\OhDear;
 
 class OhDearToolServiceProvider extends ServiceProvider
 {
@@ -16,7 +15,7 @@ class OhDearToolServiceProvider extends ServiceProvider
             __DIR__.'/../config/nova-ohdear-tool.php' => config_path('nova-ohdear-tool.php'),
         ], 'config');
 
-        $this->loadViewsFrom(__DIR__ . '/../resources/views', 'OhDearTool');
+        $this->loadViewsFrom(__DIR__.'/../resources/views', 'OhDearTool');
 
         $this->app->booted(function () {
             $this->routes();
@@ -27,6 +26,7 @@ class OhDearToolServiceProvider extends ServiceProvider
             if (! $token) {
                 throw ConfigNotCorrect::apiTokenMissing();
             }
+
             return new OhDear($token);
         });
     }
@@ -40,7 +40,7 @@ class OhDearToolServiceProvider extends ServiceProvider
         Route::middleware(['nova', Authorize::class])
             ->prefix('/nova-vendor/ohdearapp/oh-dear-tool')
             ->group(
-                __DIR__ . '/../routes/api.php'
+                __DIR__.'/../routes/api.php'
             );
     }
 }
