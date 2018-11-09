@@ -6,6 +6,7 @@
                 v-for="(certificateChainIssuer, i) in certificateChainIssuers"
                 class="border-b border-40"
                 :class="{ 'border-none': i === certificateChainIssuers.length - 1 }"
+                :key="i"
             >
                 <div class="py-4">
                     <h4 class="font-normal text-80">

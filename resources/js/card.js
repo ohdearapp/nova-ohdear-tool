@@ -1,3 +1,3 @@
-Nova.booting((Vue, router) => {
+Nova.booting((Vue) => {
     Vue.component('ohdear-summary', require('./components/Card'));
 });

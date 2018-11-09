@@ -12,7 +12,7 @@
                         </tr>
                     </thead>
                     <tbody>
-                        <tr v-for="mixedContentItem in mixedContent">
+                        <tr v-for="(mixedContentItem, i) in mixedContent" :key="i">
                             <td class="py-3">
                                 <a :href="mixedContentItem.foundOnUrl" class="text-primary dim no-underline">{{ mixedContentItem.foundOnUrl }}</a>
                             </td>

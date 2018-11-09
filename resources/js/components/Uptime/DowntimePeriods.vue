@@ -11,7 +11,7 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <tr v-for="downtimePeriod in downtimePeriods">
+                    <tr v-for="(downtimePeriod, i) in downtimePeriods" :key="i">
                         <td>{{ downtimePeriod.startedAt }}</td>
                         <td>{{ downtimePeriod.endedAt }}</td>
                         <td>{{ duration(downtimePeriod) }}</td>

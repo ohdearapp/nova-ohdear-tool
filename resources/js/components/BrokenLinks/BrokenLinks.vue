@@ -12,7 +12,7 @@
                         </tr>
                     </thead>
                     <tbody>
-                        <tr v-for="brokenLink in brokenLinks">
+                        <tr v-for="(brokenLink, i) in brokenLinks" :key="i">
                             <td>{{ brokenLink.statusCode || 'No response' }}</td>
                             <td>
                                 <a :href="brokenLink.crawledUrl" class="text-primary dim no-underline">{{ brokenLink.crawledUrl }}</a>

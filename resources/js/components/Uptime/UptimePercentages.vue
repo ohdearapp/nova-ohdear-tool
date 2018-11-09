@@ -10,7 +10,7 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <tr v-for="uptime in reverse(uptimePastWeek)">
+                    <tr v-for="(uptime, i) in reverse(uptimePastWeek)" :key="i">
                         <td>{{ uptime.datetime | date }}</td>
                         <td>{{ uptime.uptimePercentage }}%</td>
                     </tr>
@@ -28,7 +28,7 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <tr v-for="uptime in reverse(uptimePastYear)">
+                    <tr v-for="(uptime, i) in reverse(uptimePastYear)" :key="i">
                         <td>{{ uptime.datetime | monthYear }}</td>
                         <td>{{ uptime.uptimePercentage }}%</td>
                     </tr>

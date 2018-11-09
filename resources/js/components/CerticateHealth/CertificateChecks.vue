@@ -4,6 +4,7 @@
         <card class="py-3 px-6">
             <div
                 v-for="(check, i) in certificateChecks"
+                :key="i"
                 class="flex border-b border-40"
                 :class="{ 'border-none': i === certificateChecks.length - 1 }"
             >
