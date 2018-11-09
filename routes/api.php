@@ -7,10 +7,7 @@ use OhDear\OhDearTool\Http\Controllers\MixedContentController;
 use OhDear\OhDearTool\Http\Controllers\SitesController;
 use OhDear\OhDearTool\Http\Controllers\UptimeController;
 
-Route::prefix('sites')->group(function() {
-    Route::get('/', [SitesController::class, 'index']);
-    Route::get('{siteId}', [SitesController::class, 'show']);
-});
+Route::get('site', [SitesController::class, 'show']);
 
 Route::prefix('checks/{checkId}')->group(function() {
     Route::post('enable', [ChecksController::class, 'enable']);

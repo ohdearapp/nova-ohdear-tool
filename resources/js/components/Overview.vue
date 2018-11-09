@@ -6,35 +6,35 @@
                 <uptime
                     v-if="uptimeCheck"
                     :check="uptimeCheck"
-                    :site-id="viewingSiteId"
+                    :site-id="site.id"
                 ></uptime>
             </div>
             <div class="p-6 w-1/2">
                 <broken-links
                     v-if="brokenLinksCheck"
                     :check="brokenLinksCheck"
-                    :site-id="viewingSiteId"
+                    :site-id="site.id"
                 ></broken-links>
             </div>
             <div class="p-6 w-1/2">
                 <certificate-health
                     v-if="certificateHealthCheck"
                     :check="certificateHealthCheck"
-                    :site-id="viewingSiteId"
+                    :site-id="site.id"
                 ></certificate-health>
             </div>
             <div class="p-6 w-1/2">
                 <mixed-content
                     v-if="mixedContentCheck"
                     :check="mixedContentCheck"
-                    :site-id="viewingSiteId"
+                    :site-id="site.id"
                 ></mixed-content>
             </div>
             <div class="p-6 w-1/2">
                 <certificate-transparancy
                     v-if="certificateTransparancyCheck"
                     :check="certificateTransparancyCheck"
-                    :site-id="viewingSiteId"
+                    :site-id="site.id"
                 ></certificate-transparancy>
             </div>
         </div>
@@ -86,47 +86,21 @@ export default {
         }
     },
 
-    watch: {
-        async viewingSiteId() {
-            this.loading = true;
-
-            await this.refreshSite();
-
-            this.loading = false;
-        }
-    },
-
     data: () => ({
-        sites: [],
-        viewingSiteId: null,
-        viewingSite: null,
+        site: null,
         loading: true,
     }),
 
     async created() {
-        this.sites = await api.getSites();
-
-        this.viewingSiteId = this.sites[0]['site_id'];
+        this.site = await api.getSite();
 
         this.startPolling();
     },
 
     methods: {
-        uptimeAsAFunction() {
-            this.uptimeCheck = this.getCheck('uptime');
-        },
-
-        getCheck(type) {
-            if (!this.viewingSite) {
-                return null;
-            }
-
-            return this.viewingSite.checks.find(check => check.type === type);
-        },
-
         startPolling() {
             const poller = window.setInterval(async () => {
-                if (!this.viewingSite) {
+                if (!this.site) {
                     return;
                 }
 
@@ -143,10 +117,22 @@ export default {
         },
 
         async refreshSite() {
-            let site = await api.getSite(this.viewingSiteId);
+            this.loading = true;
 
-            this.viewingSite = site;
-        }
+            this.site = await api.getSite();
+            console.log(this.site);
+
+
+            this.loading = false;
+        },
+
+        getCheck(type) {
+            if (!this.site) {
+                return null;
+            }
+
+            return this.site.checks.find(check => check.type === type);
+        },
     }
 };
 </script>

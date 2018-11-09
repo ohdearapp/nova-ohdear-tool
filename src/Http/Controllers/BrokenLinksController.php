@@ -14,10 +14,8 @@ class BrokenLinksController
 {
     public function show(int $siteId)
     {
-        return Cache::remember("oh-dear-broken-links-{$siteId}", 1, function () use ($siteId) {
             return [
                 'brokenLinks' => app(OhDear::class)->brokenLinks($siteId),
             ];
-        });
     }
 }

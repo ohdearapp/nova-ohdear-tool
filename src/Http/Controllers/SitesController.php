@@ -13,16 +13,11 @@ use Illuminate\Routing\Controller;
 
 class SitesController extends Controller
 {
-    public function index()
+    public function show()
     {
-        return config('oh-dear-tool.sites');
-    }
+        $siteId = config('oh-dear-tool.site_id');
 
-    public function show(int $siteId)
-    {
         $site = $this->getSite($siteId);
-
-        dump($site->attributes['checks'][0]);
 
         return [
             'site' => $site,
@@ -33,6 +28,4 @@ class SitesController extends Controller
     {
         return app(OhDear::class)->site($siteId);
     }
-
-
 }
