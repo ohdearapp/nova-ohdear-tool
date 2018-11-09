@@ -14,8 +14,8 @@ class BrokenLinksController
 {
     public function show(int $siteId)
     {
-            return [
-                'brokenLinks' => app(OhDear::class)->brokenLinks($siteId),
-            ];
+        return [
+            'brokenLinks' => app(OhDear::class)->brokenLinks($siteId),
+        ];
     }
 }

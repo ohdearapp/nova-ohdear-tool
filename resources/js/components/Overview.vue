@@ -60,7 +60,7 @@ export default {
 
     provide() {
         return {
-            refreshSite:() => this.refreshSite(),
+            refreshSite:() => this.getSite(),
         }
     },
 
@@ -92,7 +92,11 @@ export default {
     }),
 
     async created() {
-        this.site = await api.getSite();
+        this.loading = true;
+
+        this.getSite();
+
+        this.loading = false;
 
         this.startPolling();
     },
@@ -108,7 +112,7 @@ export default {
                     return;
                 }
 
-                await this.refreshSite();
+                await this.getSite();
             }, 1000 * 60);
 
             this.$once('hook:beforeDestroy', () => {
@@ -116,14 +120,8 @@ export default {
             });
         },
 
-        async refreshSite() {
-            this.loading = true;
-
+        async getSite() {
             this.site = await api.getSite();
-            console.log(this.site);
-
-
-            this.loading = false;
         },
 
         getCheck(type) {

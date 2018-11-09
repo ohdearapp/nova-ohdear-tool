@@ -31,6 +31,6 @@ export default {
     components: {
         CheckCard,
         RelativeTime
-    }
+    },
 };
 </script>
