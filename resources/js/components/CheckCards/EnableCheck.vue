@@ -1,5 +1,7 @@
 <template>
-    <checkbox :checked="check.enabled" @input="toggleEnabled"></checkbox>
+    <div>
+       <checkbox :checked="check.enabled" @input="toggleEnabled"></checkbox>
+    </div>
 </template>
 
 <script>

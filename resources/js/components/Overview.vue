@@ -92,9 +92,12 @@ export default {
     }),
 
     async created() {
-        this.loading = true;
+        if (! this.site) {
+            this.loading = true;
+        }
 
-        this.getSite();
+
+        await this.getSite();
 
         this.loading = false;
 
