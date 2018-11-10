@@ -10,7 +10,7 @@ class SitesController extends Controller
 {
     public function show()
     {
-        $siteId = config('oh-dear-tool.site_id');
+        $siteId = config('nova-ohdear-tool.site_id');
 
         $site = $this->getSite($siteId);
 

@@ -9,8 +9,6 @@ class ChecksController
 {
     public function enable(int $checkId)
     {
-        $this->removeCache();
-
         app(OhDear::class)->enableCheck($checkId);
 
         return 'ok';
@@ -18,8 +16,6 @@ class ChecksController
 
     public function disable(int $checkId)
     {
-        $this->removeCache();
-
         app(OhDear::class)->disableCheck($checkId);
 
         return 'ok';
@@ -30,12 +26,5 @@ class ChecksController
         app(OhDear::class)->requestRun($checkId);
 
         return 'ok';
-    }
-
-    public function removeCache()
-    {
-        $siteId = config('oh-dear-tool.sites.0.site_id');
-
-        Cache::forget("oh-dear-site-{$siteId}");
     }
 }

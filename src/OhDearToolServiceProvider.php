@@ -22,7 +22,7 @@ class OhDearToolServiceProvider extends ServiceProvider
         });
 
         $this->app->singleton(OhDear::class, function () {
-            $token = config('oh-dear-tool.api_token');
+            $token = config('nova-ohdear-tool.api_token');
             if (! $token) {
                 throw ConfigNotCorrect::apiTokenMissing();
             }
