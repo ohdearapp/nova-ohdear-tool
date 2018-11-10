@@ -2,7 +2,6 @@
 
 [![Latest Version on Packagist](https://img.shields.io/packagist/v/ohdearapp/nova-ohdear-tool.svg?style=flat-square)](https://packagist.org/packages/ohdearapp/nova-ohdear-tool)
 [![StyleCI](https://github.styleci.io/repos/146995534/shield?branch=master)](https://github.styleci.io/repos/146995534)
-[![Quality Score](https://img.shields.io/scrutinizer/g/ohdearapp/nova-ohdear-tool.svg?style=flat-square)](https://scrutinizer-ci.com/g/ohdearapp/nova-ohdear-tool)
 [![Total Downloads](https://img.shields.io/packagist/dt/ohdearapp/nova-ohdear-tool.svg?style=flat-square)](https://packagist.org/packages/ohdearapp/nova-ohdear-tool)
 
 This tool will display the check results performed by [Oh Dear!](https://ohdear.app) in your Nova app.
