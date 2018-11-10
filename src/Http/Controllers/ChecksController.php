@@ -3,7 +3,6 @@
 namespace OhDear\OhDearTool\Http\Controllers;
 
 use OhDear\PhpSdk\OhDear;
-use Illuminate\Support\Facades\Cache;
 
 class ChecksController
 {
