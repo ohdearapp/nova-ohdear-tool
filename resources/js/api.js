@@ -1,7 +1,7 @@
 export default {
     getSite() {
         return window.axios
-            .get(`/nova-vendor/ohdearapp/oh-dear-tool/site/`, { headers: { 'Cache-Control': 'no-cache' } })
+            .get(`/nova-vendor/ohdearapp/oh-dear-tool/site`, { headers: { 'Cache-Control': 'no-cache' } })
             .then(response => response.data.site);
     },
 
