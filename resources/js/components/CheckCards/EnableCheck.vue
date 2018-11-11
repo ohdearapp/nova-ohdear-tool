@@ -23,10 +23,11 @@ export default {
             this.$toasted.show(`The ${this.check.label.toLowerCase()} check has been enabled`, { type: 'success' });
         },
 
-        disableCheck() {
+        async disableCheck() {
+            await api.disableCheck(this.check.id);
+
             this.$toasted.show(`The ${this.check.label.toLowerCase()} check has been disabled`, { type: 'success' });
 
-            api.disableCheck(this.check.id);
         }
     }
 };
