@@ -5,16 +5,12 @@
             :class="`border-${check.color}`"
         >
             <h3>
-                <router-link v-if="url" :to="url" class="text-90 no-underline">
-                    {{ check.label }}
-                </router-link>
+                <router-link v-if="url" :to="url" class="text-90 no-underline"> {{ check.label }} </router-link>
                 <span v-else>{{ check.label }}</span>
             </h3>
             <check-result :check="check" class="text-80"></check-result>
         </header>
-        <div class="flex-1 px-6 mb-6 text-90">
-            <slot name="body" v-bind="check"></slot>
-        </div>
+        <div class="flex-1 px-6 mb-6 text-90"><slot name="body" v-bind="check"></slot></div>
         <div class="px-6 mb-3">
             <slot v-if="check.enabled" name="link" v-bind="check">
                 <router-link v-if="url" :to="url" class="text-primary dim no-underline">

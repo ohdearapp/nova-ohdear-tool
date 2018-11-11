@@ -1,7 +1,5 @@
 <template>
-    <div>
-       <checkbox :checked="check.enabled" @input="toggleEnabled"></checkbox>
-    </div>
+    <div><checkbox :checked="check.enabled" @input="toggleEnabled"></checkbox></div>
 </template>
 
 <script>
@@ -13,16 +11,16 @@ export default {
     inject: ['refreshSite'],
 
     methods: {
-        toggleEnabled() {
-            this.check.enabled ? this.disableCheck() : this.enableCheck();
+        async toggleEnabled() {
+            this.check.enabled ? await this.disableCheck() : await this.enableCheck();
 
             this.refreshSite();
         },
 
-        enableCheck() {
-            this.$toasted.show(`The ${this.check.label.toLowerCase()} check has been enabled`, { type: 'success' });
+        async enableCheck() {
+            await api.enableCheck(this.check.id);
 
-            api.enableCheck(this.check.id);
+            this.$toasted.show(`The ${this.check.label.toLowerCase()} check has been enabled`, { type: 'success' });
         },
 
         disableCheck() {

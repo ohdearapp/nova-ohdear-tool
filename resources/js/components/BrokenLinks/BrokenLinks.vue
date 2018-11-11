@@ -15,10 +15,14 @@
                         <tr v-for="(brokenLink, i) in brokenLinks" :key="i">
                             <td>{{ brokenLink.statusCode || 'No response' }}</td>
                             <td>
-                                <a :href="brokenLink.crawledUrl" class="text-primary dim no-underline">{{ brokenLink.crawledUrl }}</a>
+                                <a :href="brokenLink.crawledUrl" class="text-primary dim no-underline">{{
+                                    brokenLink.crawledUrl
+                                }}</a>
                             </td>
                             <td>
-                                <a :href="brokenLink.foundOnUrl" class="text-primary dim no-underline">{{ brokenLink.foundOnUrl }}</a>
+                                <a :href="brokenLink.foundOnUrl" class="text-primary dim no-underline">{{
+                                    brokenLink.foundOnUrl
+                                }}</a>
                             </td>
                         </tr>
                         <tr v-if="brokenLinks.length === 0">

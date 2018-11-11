@@ -14,11 +14,15 @@
                     <tbody>
                         <tr v-for="(mixedContentItem, i) in mixedContent" :key="i">
                             <td class="py-3">
-                                <a :href="mixedContentItem.foundOnUrl" class="text-primary dim no-underline">{{ mixedContentItem.foundOnUrl }}</a>
+                                <a :href="mixedContentItem.foundOnUrl" class="text-primary dim no-underline">{{
+                                    mixedContentItem.foundOnUrl
+                                }}</a>
                             </td>
                             <td class="py-3">{{ mixedContentItem.elementName }}</td>
                             <td class="py-3">
-                                <a :href="mixedContentItem.mixedContentUrl" class="text-primary dim no-underline">{{ mixedContentItem.mixedContentUrl }}</a>
+                                <a :href="mixedContentItem.mixedContentUrl" class="text-primary dim no-underline">{{
+                                    mixedContentItem.mixedContentUrl
+                                }}</a>
                             </td>
                         </tr>
                         <tr v-if="mixedContent.length === 0">

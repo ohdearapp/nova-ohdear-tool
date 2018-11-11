@@ -2,19 +2,9 @@
     <loading-view :loading="loading">
         <heading class="mb-3">Oh Dear!</heading>
         <div class="flex flex-wrap -m-6">
+            <div class="p-6 w-1/2"><uptime v-if="uptimeCheck" :check="uptimeCheck" :site-id="site.id"></uptime></div>
             <div class="p-6 w-1/2">
-                <uptime
-                    v-if="uptimeCheck"
-                    :check="uptimeCheck"
-                    :site-id="site.id"
-                ></uptime>
-            </div>
-            <div class="p-6 w-1/2">
-                <broken-links
-                    v-if="brokenLinksCheck"
-                    :check="brokenLinksCheck"
-                    :site-id="site.id"
-                ></broken-links>
+                <broken-links v-if="brokenLinksCheck" :check="brokenLinksCheck" :site-id="site.id"></broken-links>
             </div>
             <div class="p-6 w-1/2">
                 <certificate-health
@@ -24,11 +14,7 @@
                 ></certificate-health>
             </div>
             <div class="p-6 w-1/2">
-                <mixed-content
-                    v-if="mixedContentCheck"
-                    :check="mixedContentCheck"
-                    :site-id="site.id"
-                ></mixed-content>
+                <mixed-content v-if="mixedContentCheck" :check="mixedContentCheck" :site-id="site.id"></mixed-content>
             </div>
             <div class="p-6 w-1/2">
                 <certificate-transparancy
@@ -92,10 +78,9 @@ export default {
     }),
 
     async created() {
-        if (! this.site) {
+        if (!this.site) {
             this.loading = true;
         }
-
 
         await this.getSite();
 

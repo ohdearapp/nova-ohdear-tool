@@ -1,10 +1,7 @@
 <template>
     <loading-view :loading="loading">
         <to-oh-dear-overview></to-oh-dear-overview>
-        <uptime-percentages
-            :uptime-past-week="uptimePastWeek"
-            :uptime-past-year="uptimePastYear"
-        ></uptime-percentages>
+        <uptime-percentages :uptime-past-week="uptimePastWeek" :uptime-past-year="uptimePastYear"></uptime-percentages>
         <downtime-periods :downtime-periods="downtimePeriods"></downtime-periods>
     </loading-view>
 </template>

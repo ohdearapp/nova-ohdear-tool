@@ -9,9 +9,7 @@
                 :key="i"
             >
                 <div class="py-4">
-                    <h4 class="font-normal text-80">
-                        {{ certificateChainIssuer }}
-                    </h4>
+                    <h4 class="font-normal text-80">{{ certificateChainIssuer }}</h4>
                 </div>
             </div>
         </card>
