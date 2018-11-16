@@ -1,5 +1,12 @@
 <template>
-    <div><checkbox :checked="check.enabled" @input="toggleEnabled"></checkbox></div>
+    <label class="flex items-end text-90">
+        <checkbox
+            :checked="check.enabled"
+            @input="toggleEnabled"
+            class="mr-2"
+        ></checkbox>
+        Enabled
+    </label>
 </template>
 
 <script>
