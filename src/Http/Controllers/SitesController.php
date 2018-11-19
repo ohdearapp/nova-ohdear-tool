@@ -12,15 +12,8 @@ class SitesController extends Controller
     {
         $siteId = config('nova-ohdear-tool.site_id');
 
-        $site = $this->getSite($siteId);
+        $site = app(OhDear::class)->site($siteId);
 
-        return [
-            'site' => $site,
-        ];
-    }
-
-    protected function getSite(int $siteId): Site
-    {
-        return app(OhDear::class)->site($siteId);
+        return compact('site');
     }
 }
