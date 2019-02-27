@@ -2,6 +2,10 @@
 
 All notable changes to `nova-ohdear-tool` will be documented in this file
 
+## 1.1.0 - 2019-02-27
+
+- support for Laravel 5.8 and Nova 2.0
+
 ## 1.0.0 - 2018-11-13
 
 - initial release
