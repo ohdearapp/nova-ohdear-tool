@@ -3,7 +3,6 @@
 namespace OhDear\OhDearTool\Http\Controllers;
 
 use OhDear\PhpSdk\OhDear;
-use OhDear\PhpSdk\Resources\Site;
 use Illuminate\Routing\Controller;
 
 class SitesController extends Controller
