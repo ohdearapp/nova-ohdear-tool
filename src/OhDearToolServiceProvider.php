@@ -2,11 +2,11 @@
 
 namespace OhDear\OhDearTool;
 
-use OhDear\OhDearTool\Exceptions\ConfigNotCorrect;
 use OhDear\PhpSdk\OhDear;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\ServiceProvider;
 use OhDear\OhDearTool\Http\Middleware\Authorize;
+use OhDear\OhDearTool\Exceptions\ConfigNotCorrect;
 
 class OhDearToolServiceProvider extends ServiceProvider
 {
