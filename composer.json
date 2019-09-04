@@ -27,7 +27,7 @@
         "ohdearapp/ohdear-php-sdk": "^1.5.1"
     },
     "require-dev": {
-        "orchestra/testbench": "^3.8",
+        "orchestra/testbench": "^3.8|^4.0",
         "phpunit/phpunit": "8.0"
     },
     "autoload": {
