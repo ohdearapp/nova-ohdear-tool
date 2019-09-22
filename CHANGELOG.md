@@ -2,6 +2,10 @@
 
 All notable changes to `nova-ohdear-tool` will be documented in this file
 
+## 1.1.2 - 2019-09-22
+
+- remove nova dep
+
 ## 1.1.1 - 2019-09-04
 
 - fix import of exception
