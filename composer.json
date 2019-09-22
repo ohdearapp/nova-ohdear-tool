@@ -23,7 +23,6 @@
     ],
     "require": {
         "php": ">=7.1",
-        "laravel/nova": "^2.0",
         "ohdearapp/ohdear-php-sdk": "^1.5.1"
     },
     "require-dev": {
