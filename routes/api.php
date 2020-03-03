@@ -1,11 +1,11 @@
 <?php
 
-use OhDear\OhDearTool\Http\Controllers\SitesController;
-use OhDear\OhDearTool\Http\Controllers\ChecksController;
-use OhDear\OhDearTool\Http\Controllers\UptimeController;
 use OhDear\OhDearTool\Http\Controllers\BrokenLinksController;
-use OhDear\OhDearTool\Http\Controllers\MixedContentController;
 use OhDear\OhDearTool\Http\Controllers\CertificateHealthController;
+use OhDear\OhDearTool\Http\Controllers\ChecksController;
+use OhDear\OhDearTool\Http\Controllers\MixedContentController;
+use OhDear\OhDearTool\Http\Controllers\SitesController;
+use OhDear\OhDearTool\Http\Controllers\UptimeController;
 
 Route::get('site', [SitesController::class, 'show']);
 

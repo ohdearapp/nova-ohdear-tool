@@ -9,7 +9,7 @@ class MixedContentController
     public function show(int $siteId)
     {
         return [
-                'mixedContent' => app(OhDear::class)->mixedContent($siteId),
-            ];
+            'mixedContent' => app(OhDear::class)->mixedContent($siteId),
+        ];
     }
 }
