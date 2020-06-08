@@ -9,7 +9,7 @@ class CertificateHealthController
     public function show(int $siteId)
     {
         return [
-                'certificate_health' => app(OhDear::class)->certificateHealth($siteId),
-            ];
+            'certificate_health' => app(OhDear::class)->certificateHealth($siteId),
+        ];
     }
 }
