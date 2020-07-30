@@ -3,8 +3,8 @@
 namespace OhDear\OhDearTool\Tests;
 
 use Illuminate\Support\Facades\Route;
-use Orchestra\Testbench\TestCase as Orchestra;
 use OhDear\OhDearTool\OhDearToolServiceProvider;
+use Orchestra\Testbench\TestCase as Orchestra;
 
 abstract class TestCase extends Orchestra
 {

@@ -2,9 +2,9 @@
 
 namespace OhDear\OhDearTool;
 
+use Illuminate\View\View;
 use Laravel\Nova\Nova;
 use Laravel\Nova\Tool;
-use Illuminate\View\View;
 
 class OhDearTool extends Tool
 {
