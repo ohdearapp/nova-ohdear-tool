@@ -23,7 +23,7 @@
     ],
     "require": {
         "php": ">=7.1",
-        "ohdearapp/ohdear-php-sdk": "^1.5.1"
+        "ohdearapp/ohdear-php-sdk": "^3.0"
     },
     "require-dev": {
         "orchestra/testbench": "^5.0",
