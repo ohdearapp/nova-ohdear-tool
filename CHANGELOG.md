@@ -2,6 +2,10 @@
 
 All notable changes to `nova-ohdear-tool` will be documented in this file
 
+## 1.1.3 - 2021-04-26
+
+- add tool page title (#31)
+
 ## 1.1.2 - 2019-09-22
 
 - remove nova dep
