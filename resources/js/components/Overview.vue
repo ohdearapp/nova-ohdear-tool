@@ -36,6 +36,11 @@ import MixedContent from './CheckCards/MixedContent';
 import CertificateTransparancy from './CheckCards/CertificateTransparancy';
 
 export default {
+    metaInfo() {
+        return {
+            title: 'Oh Dear!'
+        }
+    },
     components: {
         Uptime,
         CertificateHealth,
