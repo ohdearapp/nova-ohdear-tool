@@ -40,7 +40,7 @@ Before submitting a pull request:
 
 If the project maintainer has any additional requirements, you will find them listed here.
 
-- **[PSR-2 Coding Standard](https://github.com/php-fig/fig-standards/blob/master/accepted/PSR-2-coding-style-guide.md)** - The easiest way to apply the conventions is to install [PHP Code Sniffer](http://pear.php.net/package/PHP_CodeSniffer).
+- **Coding style** - Run `composer format` to apply the project's Pint configuration and `npm run format` for frontend files. Run `composer test` and `composer analyse` before submitting. See the README for Nova authentication and asset build instructions.
 
 - **Add tests!** - Your patch won't be accepted if it doesn't have tests.
 

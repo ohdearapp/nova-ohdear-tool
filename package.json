@@ -1,28 +1,16 @@
 {
     "private": true,
+    "type": "module",
     "scripts": {
-        "dev": "npm run development",
-        "development": "cross-env NODE_ENV=development node_modules/webpack/bin/webpack.js --progress --hide-modules --config=node_modules/laravel-mix/setup/webpack.config.js",
-        "watch": "cross-env NODE_ENV=development node_modules/webpack/bin/webpack.js --watch --progress --hide-modules --config=node_modules/laravel-mix/setup/webpack.config.js",
-        "watch-poll": "npm run watch -- --watch-poll",
-        "hot": "cross-env NODE_ENV=development node_modules/webpack-dev-server/bin/webpack-dev-server.js --inline --hot --config=node_modules/laravel-mix/setup/webpack.config.js",
-        "prod": "npm run production",
-        "production": "cross-env NODE_ENV=production node_modules/webpack/bin/webpack.js --progress --hide-modules --config=node_modules/laravel-mix/setup/webpack.config.js",
-        "format": "prettier --single-quote --write 'resources/**/*.{css,js,vue}'",
-        "lint": "eslint resources/js --fix --ext js,vue"
+        "dev": "vite build --watch",
+        "build": "vite build",
+        "format": "prettier --write resources vite.config.js",
+        "format:check": "prettier --check resources vite.config.js"
     },
     "devDependencies": {
-        "cross-env": "^5.0.0",
-        "eslint": "^4.19.1",
-        "eslint-config-prettier": "^2.9.0",
-        "eslint-plugin-vue": "^4.4.0",
-        "laravel-mix": "^1.0",
-        "prettier": "^1.15.1"
-    },
-    "dependencies": {
-        "animated-scroll-to": "^1.2.2",
-        "moment": "^2.29.4",
-        "moment-timezone": "^0.5.21",
-        "vue": "^2.5.0"
+        "@vitejs/plugin-vue": "^6.0.0",
+        "prettier": "^3.0.0",
+        "vite": "^7.0.0",
+        "vue": "^3.5.0"
     }
 }

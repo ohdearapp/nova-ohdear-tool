@@ -1,6 +1,6 @@
 {
     "name": "ohdearapp/nova-ohdear-tool",
-    "description": "A Laravel Nova tool to display the application log.",
+    "description": "Display Oh Dear monitoring checks in Laravel Nova.",
     "keywords": [
         "laravel",
         "nova"
@@ -22,12 +22,16 @@
         }
     ],
     "require": {
-        "php": ">=7.1",
-        "ohdearapp/ohdear-php-sdk": "^3.0"
+        "php": "^8.4",
+        "illuminate/support": "^13.0",
+        "laravel/nova": "^5.11.1",
+        "ohdearapp/ohdear-php-sdk": "^4.8"
     },
     "require-dev": {
-        "orchestra/testbench": "^5.0",
-        "phpunit/phpunit": "9.0"
+        "larastan/larastan": "^3.0",
+        "laravel/pint": "^1.32",
+        "orchestra/testbench": "^11.0",
+        "pestphp/pest": "^5.0"
     },
     "autoload": {
         "psr-4": {
@@ -47,8 +51,16 @@
         }
     },
     "config": {
-        "sort-packages": true
+        "sort-packages": true,
+        "allow-plugins": {
+            "pestphp/pest-plugin": true,
+            "php-http/discovery": true
+        }
     },
-    "minimum-stability": "dev",
-    "prefer-stable": true
+    "scripts": {
+        "test": "pest",
+        "analyse": "phpstan analyse --memory-limit=1G",
+        "format": "pint",
+        "format:test": "pint --test"
+    }
 }
