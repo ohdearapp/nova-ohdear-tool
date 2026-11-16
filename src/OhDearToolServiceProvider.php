@@ -26,7 +26,7 @@ class OhDearToolServiceProvider extends ServiceProvider
         $this->app->singleton(OhDear::class, function () {
             $token = config('nova-ohdear-tool.api_token');
 
-            if (! is_string($token) || $token === '') {
+            if (!is_string($token) || $token === '') {
                 throw ConfigNotCorrect::apiTokenMissing();
             }
 
@@ -50,7 +50,7 @@ class OhDearToolServiceProvider extends ServiceProvider
     {
         $this->callAfterResolving(ExceptionHandler::class, function ($handler) {
             $handler->renderable(function (OhDearException|FatalRequestException $exception, Request $request): ?JsonResponse {
-                if (! $request->is('nova-vendor/ohdearapp/oh-dear-tool/*')) {
+                if (!$request->is('nova-vendor/ohdearapp/oh-dear-tool/*')) {
                     return null;
                 }
 

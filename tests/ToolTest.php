@@ -17,19 +17,19 @@ use Saloon\Http\PendingRequest;
 
 beforeEach(function () {
     $this->check = [
-        'id' => 73,
-        'type' => 'uptime',
-        'label' => 'Uptime',
-        'enabled' => true,
+        'id'                => 73,
+        'type'              => 'uptime',
+        'label'             => 'Uptime',
+        'enabled'           => true,
         'latest_run_result' => 'succeeded',
-        'settings' => ['http_client_headers' => ['Authorization' => 'private-header']],
+        'settings'          => ['http_client_headers' => ['Authorization' => 'private-header']],
     ];
 
     $this->monitor = [
-        'id' => 42,
-        'team_id' => 3,
-        'url' => 'https://example.com',
-        'checks' => [$this->check],
+        'id'              => 42,
+        'team_id'         => 3,
+        'url'             => 'https://example.com',
+        'checks'          => [$this->check],
         'crawler_headers' => ['Authorization' => 'private-header'],
     ];
 });
@@ -49,7 +49,7 @@ it('returns only the configured monitor and public check data', function () {
 });
 
 it('protects every API endpoint with the registered tool visibility', function (string $method, string $path) {
-    Nova::$tools = [(new OhDearTool)->canSee(fn () => false)];
+    Nova::$tools = [(new OhDearTool())->canSee(fn () => false)];
 
     $this->json($method, "/nova-vendor/ohdearapp/oh-dear-tool/{$path}")->assertForbidden();
 })->with([
@@ -77,7 +77,7 @@ it('does not expose an unregistered tool', function () {
 });
 
 it('protects the Inertia pages with tool visibility', function (string $path) {
-    Nova::$tools = [(new OhDearTool)->canSee(fn () => false)];
+    Nova::$tools = [(new OhDearTool())->canSee(fn () => false)];
 
     $this->get("/nova/oh-dear{$path}")->assertForbidden();
 })->with(['', '/uptime', '/broken-links', '/mixed-content', '/certificate-health']);
@@ -85,7 +85,7 @@ it('protects the Inertia pages with tool visibility', function (string $path) {
 it('uses the current SDK to update checks belonging to the monitor', function (string $action, string $requestClass) {
     MockClient::global([
         GetMonitorRequest::class => MockResponse::make($this->monitor),
-        $requestClass => MockResponse::make($this->check),
+        $requestClass            => MockResponse::make($this->check),
     ]);
 
     $this->postJson("/nova-vendor/ohdearapp/oh-dear-tool/checks/73/{$action}")->assertNoContent();
@@ -130,17 +130,17 @@ it('does not leak upstream error responses', function (int $upstreamStatus, int 
 
 it('serializes every page of broken links from the current SDK', function () {
     $link = [
-        'status_code' => null,
-        'crawled_url' => 'https://example.net/missing',
-        'relative_crawled_url' => '/missing',
-        'found_on_url' => 'https://example.com',
+        'status_code'           => null,
+        'crawled_url'           => 'https://example.net/missing',
+        'relative_crawled_url'  => '/missing',
+        'found_on_url'          => 'https://example.com',
         'relative_found_on_url' => '/',
-        'link_text' => 'Missing page',
-        'internal' => false,
+        'link_text'             => 'Missing page',
+        'internal'              => false,
     ];
 
     MockClient::global([
-        GetMonitorRequest::class => MockResponse::make($this->monitor),
+        GetMonitorRequest::class     => MockResponse::make($this->monitor),
         GetBrokenLinksRequest::class => function (PendingRequest $request) use ($link) {
             $page = $request->query()->get('page');
 
@@ -164,7 +164,7 @@ it('returns uptime and ongoing downtime using UTC date ranges and SDK split enum
 
     MockClient::global([
         GetMonitorRequest::class => MockResponse::make($this->monitor),
-        GetUptimeRequest::class => function (PendingRequest $request) {
+        GetUptimeRequest::class  => function (PendingRequest $request) {
             $query = $request->query()->all();
             expect($query['filter']['ended_at'])->toBe('20261116134500');
 
@@ -193,13 +193,13 @@ it('returns uptime and ongoing downtime using UTC date ranges and SDK split enum
 
 it('returns mixed content and certificate details', function () {
     MockClient::global([
-        GetMonitorRequest::class => MockResponse::make($this->monitor),
+        GetMonitorRequest::class      => MockResponse::make($this->monitor),
         GetMixedContentRequest::class => MockResponse::make(['data' => [
             ['element_name' => 'img', 'mixed_content_url' => 'http://example.com/image.jpg', 'found_on_url' => 'https://example.com'],
         ]]),
         GetCertificateHealthRequest::class => MockResponse::make([
-            'certificate_details' => ['issuer' => 'Test issuer'],
-            'certificate_checks' => [['label' => 'Not expired', 'passed' => false]],
+            'certificate_details'       => ['issuer' => 'Test issuer'],
+            'certificate_checks'        => [['label' => 'Not expired', 'passed' => false]],
             'certificate_chain_issuers' => ['Test root'],
         ]),
     ]);

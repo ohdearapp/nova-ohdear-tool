@@ -21,10 +21,10 @@ abstract class TestCase extends Orchestra
         Config::preventStrayRequests();
         MockClient::destroyGlobal();
         Nova::$tools = [];
-        Nova::tools([new OhDearTool]);
+        Nova::tools([new OhDearTool()]);
         Nova::auth(fn () => true);
 
-        $this->actingAs(new User);
+        $this->actingAs(new User());
     }
 
     protected function tearDown(): void

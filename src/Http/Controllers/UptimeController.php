@@ -17,8 +17,8 @@ class UptimeController
         $until = $now->toDateTimeString();
 
         return response()->json([
-            'uptimePastWeek' => $ohDear->uptime($monitor->id, $weekAgo, $until, UptimeSplit::Day),
-            'uptimePastYear' => $ohDear->uptime($monitor->id, $yearAgo, $until, UptimeSplit::Month),
+            'uptimePastWeek'  => $ohDear->uptime($monitor->id, $weekAgo, $until, UptimeSplit::Day),
+            'uptimePastYear'  => $ohDear->uptime($monitor->id, $yearAgo, $until, UptimeSplit::Month),
             'downtimePeriods' => $ohDear->downtime($monitor->id, $weekAgo, $until),
         ]);
     }
