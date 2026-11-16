@@ -2,11 +2,14 @@
 
 use Laravel\Nova\Nova;
 use OhDear\OhDearTool\OhDearTool;
+use OhDear\PhpSdk\Requests\ApplicationHealthChecks\GetApplicationHealthCheckHistoryRequest;
+use OhDear\PhpSdk\Requests\ApplicationHealthChecks\GetApplicationHealthChecksRequest;
 use OhDear\PhpSdk\Requests\BrokenLinks\GetBrokenLinksRequest;
 use OhDear\PhpSdk\Requests\CertificateHealth\GetCertificateHealthRequest;
 use OhDear\PhpSdk\Requests\Checks\DisableCheckRequest;
 use OhDear\PhpSdk\Requests\Checks\EnableCheckRequest;
 use OhDear\PhpSdk\Requests\Checks\RequestCheckRunRequest;
+use OhDear\PhpSdk\Requests\CronCheckDefinitions\GetCronCheckDefinitionsRequest;
 use OhDear\PhpSdk\Requests\Downtime\GetDowntimeRequest;
 use OhDear\PhpSdk\Requests\MixedContent\GetMixedContentRequest;
 use OhDear\PhpSdk\Requests\Monitors\GetMonitorRequest;
@@ -55,6 +58,7 @@ it('protects every API endpoint with the registered tool visibility', function (
 })->with([
     ['GET', 'monitor'], ['GET', 'uptime'], ['GET', 'broken-links'],
     ['GET', 'mixed-content'], ['GET', 'certificate-health'],
+    ['GET', 'application-health'], ['GET', 'application-health/85'], ['GET', 'scheduled-tasks'],
     ['POST', 'checks/73/enable'], ['POST', 'checks/73/disable'], ['POST', 'checks/73/request-run'],
 ]);
 
@@ -80,7 +84,7 @@ it('protects the Inertia pages with tool visibility', function (string $path) {
     Nova::$tools = [(new OhDearTool)->canSee(fn () => false)];
 
     $this->get("/nova/oh-dear{$path}")->assertForbidden();
-})->with(['', '/uptime', '/broken-links', '/mixed-content', '/certificate-health']);
+})->with(['', '/uptime', '/broken-links', '/mixed-content', '/certificate-health', '/application-health', '/application-health/85', '/scheduled-tasks']);
 
 it('uses the current SDK to update checks belonging to the monitor', function (string $action, string $requestClass) {
     MockClient::global([
@@ -212,3 +216,104 @@ it('returns mixed content and certificate details', function () {
         ->assertJsonPath('certificateHealth.certificateDetails.issuer', 'Test issuer')
         ->assertJsonPath('certificateHealth.certificateChecks.0.passed', false);
 });
+
+it('returns application health and history without exposing metadata', function () {
+    MockClient::global([
+        GetMonitorRequest::class => MockResponse::make($this->monitor),
+        GetApplicationHealthChecksRequest::class => function (PendingRequest $request) {
+            expect($request->getUrl())->toEndWith('/monitors/42/application-health-checks');
+
+            return MockResponse::make(['data' => [
+                ['id' => 85, 'name' => 'Queue', 'label' => 'Queue workers', 'status' => 'failed', 'message' => 'Workers stopped', 'meta' => ['secret' => 'private-health-metadata']],
+                ['id' => 86, 'name' => 'Cache', 'label' => 'Cache'],
+            ]]);
+        },
+        GetApplicationHealthCheckHistoryRequest::class => function (PendingRequest $request) {
+            expect($request->getUrl())->toEndWith('/monitors/42/application-health-checks/85');
+
+            return MockResponse::make(['data' => [[
+                'id' => 301, 'status' => 'warning', 'short_summary' => 'Queue delayed',
+                'detected_at' => '2026-11-16 12:00:00', 'updated_at' => '2026-11-16 12:05:00',
+                'meta' => ['secret' => 'private-health-metadata'],
+            ]]]);
+        },
+    ]);
+
+    $this->getJson('/nova-vendor/ohdearapp/oh-dear-tool/application-health')
+        ->assertOk()->assertJsonCount(2, 'healthChecks')
+        ->assertJsonPath('healthChecks.0.status', 'failed')
+        ->assertJsonPath('healthChecks.0.message', 'Workers stopped')
+        ->assertJsonPath('healthChecks.1.status', null)
+        ->assertJsonMissingPath('healthChecks.0.meta')
+        ->assertDontSee('private-health-metadata');
+
+    $this->getJson('/nova-vendor/ohdearapp/oh-dear-tool/application-health/85')
+        ->assertOk()->assertJsonPath('healthCheck.label', 'Queue workers')
+        ->assertJsonPath('history.0.status', 'warning')
+        ->assertJsonPath('history.0.detectedAt', '2026-11-16 12:00:00')
+        ->assertJsonMissingPath('history.0.meta')
+        ->assertDontSee('private-health-metadata');
+
+    $this->getJson('/nova-vendor/ohdearapp/oh-dear-tool/application-health/999')->assertNotFound();
+});
+
+it('returns every page of scheduled tasks without exposing heartbeat credentials', function () {
+    MockClient::global([
+        GetMonitorRequest::class => MockResponse::make($this->monitor),
+        GetCronCheckDefinitionsRequest::class => function (PendingRequest $request) {
+            expect($request->getUrl())->toEndWith('/monitors/42/cron-checks');
+            $page = $request->query()->get('page');
+
+            return MockResponse::make([
+                'data' => [[
+                    'id' => $page === 1 ? 101 : 205, 'name' => $page === 1 ? 'Daily backup' : 'Import orders',
+                    'uuid' => 'private-heartbeat-uuid', 'type' => 'cron',
+                    'ping_url' => 'https://ping.ohdear.app/private-heartbeat-uuid',
+                    'created_at' => '2026-11-01 00:00:00',
+                    'cron_expression' => $page === 1 ? '15 3 * * *' : null,
+                    'frequency_in_minutes' => $page === 1 ? null : 7,
+                    'grace_time_in_minutes' => 0, 'server_timezone' => 'Europe/Brussels',
+                    'latest_result' => $page === 1 ? 'pingFinished' : 'sentPingFailedNotification',
+                    'latest_result_label' => $page === 1 ? 'ok' : 'error',
+                    'latest_result_label_color' => $page === 1 ? 'green' : 'red',
+                ]],
+                'meta' => ['current_page' => $page, 'last_page' => 2],
+            ]);
+        },
+    ]);
+
+    $this->getJson('/nova-vendor/ohdearapp/oh-dear-tool/scheduled-tasks')
+        ->assertOk()->assertJsonCount(2, 'scheduledTasks')
+        ->assertJsonPath('scheduledTasks.0.cronExpression', '15 3 * * *')
+        ->assertJsonPath('scheduledTasks.0.graceTimeInMinutes', 0)
+        ->assertJsonPath('scheduledTasks.1.name', 'Import orders')
+        ->assertJsonPath('scheduledTasks.1.frequencyInMinutes', 7)
+        ->assertJsonPath('scheduledTasks.1.latestResultLabel', 'error')
+        ->assertJsonPath('scheduledTasks.1.latestPingAt', null)
+        ->assertJsonMissingPath('scheduledTasks.0.pingUrl')
+        ->assertJsonMissingPath('scheduledTasks.0.uuid')
+        ->assertDontSee('private-heartbeat-uuid');
+});
+
+it('handles empty and unavailable check reports without leaking upstream data', function (string $path, string $requestClass) {
+    MockClient::global([
+        GetMonitorRequest::class => MockResponse::make($this->monitor),
+        $requestClass => MockResponse::make(['data' => []]),
+    ]);
+
+    $this->getJson("/nova-vendor/ohdearapp/oh-dear-tool/{$path}")
+        ->assertOk()->assertExactJson([$path === 'application-health' ? 'healthChecks' : 'scheduledTasks' => []]);
+
+    MockClient::destroyGlobal();
+
+    MockClient::global([
+        GetMonitorRequest::class => MockResponse::make($this->monitor),
+        $requestClass => MockResponse::make(['message' => 'private-report-error'], 500),
+    ]);
+
+    $this->getJson("/nova-vendor/ohdearapp/oh-dear-tool/{$path}")
+        ->assertStatus(502)->assertJsonStructure(['message'])->assertDontSee('private-report-error');
+})->with([
+    ['application-health', GetApplicationHealthChecksRequest::class],
+    ['scheduled-tasks', GetCronCheckDefinitionsRequest::class],
+]);

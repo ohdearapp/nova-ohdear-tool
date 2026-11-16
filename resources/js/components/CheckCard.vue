@@ -14,6 +14,8 @@ const report = computed(
             broken_links: "broken-links",
             mixed_content: "mixed-content",
             certificate_health: "certificate-health",
+            application_health: "application-health",
+            cron: "scheduled-tasks",
         })[props.check.type],
 );
 const status = computed(() => {

@@ -224,9 +224,28 @@
 .od-table td {
     overflow-wrap: anywhere;
 }
+.od-report-message {
+    min-width: 16rem;
+    white-space: pre-wrap;
+}
+.od-health-name {
+    min-width: 12rem;
+}
+.od-report-message .od-muted,
+.od-task-name .od-muted {
+    margin-top: 0.5rem;
+}
+.od-task-name {
+    min-width: 14rem;
+    max-width: 24rem;
+}
 .od-table td .od-link {
     min-height: 0;
     padding-block: 0.25rem;
+}
+.od-table td .od-history-link {
+    min-height: 44px;
+    padding-block: 0;
 }
 .od-number {
     font-variant-numeric: tabular-nums;
