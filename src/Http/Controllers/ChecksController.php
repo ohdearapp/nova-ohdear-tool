@@ -2,28 +2,41 @@
 
 namespace OhDear\OhDearTool\Http\Controllers;
 
+use Illuminate\Http\Response;
+use OhDear\PhpSdk\Dto\Monitor;
 use OhDear\PhpSdk\OhDear;
 
 class ChecksController
 {
-    public function enable(int $checkId)
+    public function enable(int $checkId, Monitor $monitor, OhDear $ohDear): Response
     {
-        app(OhDear::class)->enableCheck($checkId);
+        $this->authorizeCheck($monitor, $checkId);
 
-        return 'ok';
+        $ohDear->enableCheck($checkId);
+
+        return response()->noContent();
     }
 
-    public function disable(int $checkId)
+    public function disable(int $checkId, Monitor $monitor, OhDear $ohDear): Response
     {
-        app(OhDear::class)->disableCheck($checkId);
+        $this->authorizeCheck($monitor, $checkId);
 
-        return 'ok';
+        $ohDear->disableCheck($checkId);
+
+        return response()->noContent();
     }
 
-    public function requestRun(int $checkId)
+    public function requestRun(int $checkId, Monitor $monitor, OhDear $ohDear): Response
     {
-        app(OhDear::class)->requestRun($checkId);
+        $this->authorizeCheck($monitor, $checkId);
 
-        return 'ok';
+        $ohDear->requestCheckRun($checkId);
+
+        return response()->noContent();
+    }
+
+    protected function authorizeCheck(Monitor $monitor, int $checkId): void
+    {
+        abort_unless(collect($monitor->checks)->contains('id', $checkId), 404);
     }
 }

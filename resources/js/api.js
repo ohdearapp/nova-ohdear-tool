@@ -1,47 +1,13 @@
+const base = "/nova-vendor/ohdearapp/oh-dear-tool";
+
 export default {
-    getSite() {
-        return window.axios
-            .get(`/nova-vendor/ohdearapp/oh-dear-tool/site`, { headers: { 'Cache-Control': 'no-cache' } })
-            .then(response => response.data.site);
+    async get(report, signal) {
+        const response = await Nova.request().get(`${base}/${report}`, { signal });
+
+        return response.data;
     },
 
-    getUptime(siteId) {
-        return window.axios.get(`/nova-vendor/ohdearapp/oh-dear-tool/uptime/${siteId}`).then(response => response.data);
+    async updateCheck(id, action) {
+        await Nova.request().post(`${base}/checks/${id}/${action}`);
     },
-
-    getMixedContent(siteId) {
-        return window.axios
-            .get(`/nova-vendor/ohdearapp/oh-dear-tool/mixed-content/${siteId}`)
-            .then(response => response.data);
-    },
-
-    getBrokenLinks(siteId) {
-        return window.axios
-            .get(`/nova-vendor/ohdearapp/oh-dear-tool/broken-links/${siteId}`)
-            .then(response => response.data);
-    },
-
-    getCertificateHealth(siteId) {
-        return window.axios
-            .get(`/nova-vendor/ohdearapp/oh-dear-tool/certificate-health/${siteId}`)
-            .then(response => response.data);
-    },
-
-    requestRunCheck(checkId) {
-        return window.axios
-            .post(`/nova-vendor/ohdearapp/oh-dear-tool/checks/${checkId}/request-run`)
-            .then(response => response.data);
-    },
-
-    enableCheck(checkId) {
-        return window.axios
-            .post(`/nova-vendor/ohdearapp/oh-dear-tool/checks/${checkId}/enable`)
-            .then(response => response.data);
-    },
-
-    disableCheck(checkId) {
-        return window.axios
-            .post(`/nova-vendor/ohdearapp/oh-dear-tool/checks/${checkId}/disable`)
-            .then(response => response.data);
-    }
 };

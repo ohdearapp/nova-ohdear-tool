@@ -1,8 +1,10 @@
 /build
 /vendor
 /node_modules
-package-lock.json
 composer.phar
 composer.lock
 phpunit.xml
 mix-manifest.json
+/auth.json
+/.phpunit.cache
+/.phpstan

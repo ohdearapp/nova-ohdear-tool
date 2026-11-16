@@ -9,7 +9,7 @@ return [
     'api_token' => env('OH_DEAR_API_TOKEN'),
 
     /*
-     * The id of the site you want to display in the tool.
+     * The ID of the Oh Dear monitor you want to display in the tool.
      */
-    'site_id' => env('OH_DEAR_SITE_ID'),
+    'monitor_id' => env('OH_DEAR_MONITOR_ID'),
 ];

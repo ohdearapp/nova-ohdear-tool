@@ -2,30 +2,24 @@
 
 namespace OhDear\OhDearTool\Http\Controllers;
 
+use Illuminate\Http\JsonResponse;
+use OhDear\PhpSdk\Dto\Monitor;
+use OhDear\PhpSdk\Enums\UptimeSplit;
 use OhDear\PhpSdk\OhDear;
 
 class UptimeController
 {
-    public function show(int $siteId)
+    public function show(Monitor $monitor, OhDear $ohDear): JsonResponse
     {
-        return [
-            'uptimePastWeek' => app(OhDear::class)->uptime(
-                $siteId,
-                now()->subDays(7)->format('YmdHis'),
-                now()->format('YmdHis'),
-                'day'
-            ),
-            'uptimePastYear' => app(OhDear::class)->uptime(
-                $siteId,
-                now()->subYear()->format('YmdHis'),
-                now()->format('YmdHis'),
-                'month'
-            ),
-            'downtimePeriods' => app(OhDear::class)->downtime(
-                $siteId,
-                now()->subDays(7)->format('YmdHis'),
-                now()->format('YmdHis')
-            ),
-        ];
+        $now = now()->utc();
+        $weekAgo = $now->copy()->subDays(7)->toDateTimeString();
+        $yearAgo = $now->copy()->subYear()->toDateTimeString();
+        $until = $now->toDateTimeString();
+
+        return response()->json([
+            'uptimePastWeek' => $ohDear->uptime($monitor->id, $weekAgo, $until, UptimeSplit::Day),
+            'uptimePastYear' => $ohDear->uptime($monitor->id, $yearAgo, $until, UptimeSplit::Month),
+            'downtimePeriods' => $ohDear->downtime($monitor->id, $weekAgo, $until),
+        ]);
     }
 }
