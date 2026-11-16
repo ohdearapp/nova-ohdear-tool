@@ -2,7 +2,7 @@
 
 All notable changes to `nova-ohdear-tool` will be documented in this file
 
-## Unreleased
+## 2.1.0 - 2026-11-16
 
 - Add application-health reports with individual results and per-check status history.
 - Add paginated scheduled-task reports with schedules, timezones, heartbeat results, and grace periods. Exclude heartbeat credentials and arbitrary health metadata from browser responses.
