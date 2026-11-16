@@ -8,6 +8,8 @@ View your [Oh Dear](https://ohdear.app) monitor's checks without leaving Nova. E
 
 The tool uses Nova's Inertia navigation and supports its light and dark themes.
 
+Application-health reports show individual results, messages, update times, and per-check status history. Scheduled-task reports show every monitored task, its schedule and timezone, latest heartbeat result, last ping, and grace period. Both reports indicate existing snoozes without changing them. Heartbeat URLs and arbitrary health-check metadata are not sent to the browser.
+
 ![Oh Dear checks in Nova 5](docs/screenshots/index.png)
 
 ## Requirements

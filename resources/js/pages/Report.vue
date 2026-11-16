@@ -4,15 +4,22 @@ import api from "../api";
 import { date, safeUrl } from "../format";
 import ReportTable from "../components/ReportTable.vue";
 
-const props = defineProps({ report: { type: String, required: true } });
+const props = defineProps({
+    report: { type: String, required: true },
+    healthCheckId: { type: Number, default: null },
+});
 const titles = {
     uptime: "Uptime",
     "broken-links": "Broken links",
     "mixed-content": "Mixed content",
     "certificate-health": "Certificate health",
+    "application-health": "Application health",
+    "scheduled-tasks": "Scheduled tasks",
 };
-const title = computed(() => titles[props.report]);
 const data = ref(null);
+const title = computed(() =>
+    props.healthCheckId ? `${data.value?.healthCheck?.label || "Application health"} history` : titles[props.report],
+);
 const loading = ref(true);
 const error = ref("");
 let controller;
@@ -26,7 +33,10 @@ async function load() {
     error.value = "";
 
     try {
-        data.value = await api.get(props.report, request.signal);
+        data.value = await api.get(
+            props.healthCheckId ? `${props.report}/${props.healthCheckId}` : props.report,
+            request.signal,
+        );
     } catch (exception) {
         if (!request.signal.aborted)
             error.value = exception.response?.data?.message || "Could not load this report. Try again.";
@@ -45,14 +55,32 @@ function duration(period) {
     return `${Math.floor(seconds / 3600)} hours ${Math.floor((seconds % 3600) / 60)} minutes`;
 }
 
-watch(() => props.report, load, { immediate: true });
+function healthLabel(status) {
+    return (
+        { ok: "OK", warning: "Warning", failed: "Failed", crashed: "Crashed", skipped: "Skipped" }[status] ||
+        status ||
+        "Not reported yet"
+    );
+}
+
+function healthTone(status) {
+    return { ok: "success", warning: "warning", failed: "danger", crashed: "danger" }[status] || "muted";
+}
+
+function taskLabel(task) {
+    return task.latestResultLabel === "ok" ? "OK" : task.latestResultLabel || task.latestResult || "Not reported yet";
+}
+
+watch(() => [props.report, props.healthCheckId], load, { immediate: true });
 onUnmounted(() => controller?.abort());
 </script>
 
 <template>
     <div class="od-tool">
         <Head :title="`${title} — Oh Dear`" />
-        <Link :href="$url('/oh-dear')" class="od-link od-back">← Back to overview</Link>
+        <Link :href="$url(healthCheckId ? '/oh-dear/application-health' : '/oh-dear')" class="od-link od-back">
+            {{ healthCheckId ? "← Back to application health" : "← Back to overview" }}
+        </Link>
         <header class="od-page-header">
             <Heading>{{ title }}</Heading>
         </header>
@@ -62,6 +90,102 @@ onUnmounted(() => controller?.abort());
         </div>
         <p v-if="loading" class="od-loading" role="status">Loading {{ title.toLowerCase() }} report…</p>
         <template v-else-if="data">
+            <ReportTable
+                v-if="report === 'application-health' && !healthCheckId"
+                title="Application health checks"
+                :columns="['Check', 'Result', 'Details', 'Last updated']"
+                :rows="data.healthChecks"
+                empty="No application health checks reported yet. Configure application health monitoring in Oh Dear to see individual results here."
+            >
+                <template #default="{ row }">
+                    <td class="od-health-name">
+                        <p>{{ row.label || row.name }}</p>
+                        <Link
+                            :href="$url(`/oh-dear/application-health/${row.id}`)"
+                            class="od-link od-history-link"
+                            :aria-label="`View ${row.label || row.name} history`"
+                            >View history →</Link
+                        >
+                    </td>
+                    <td>
+                        <span class="od-status" :class="`od-status-${healthTone(row.status)}`">{{
+                            healthLabel(row.status)
+                        }}</span>
+                        <p v-if="row.snoozed" class="od-muted">Snoozed</p>
+                    </td>
+                    <td class="od-report-message">
+                        <p>{{ row.shortSummary || row.message || "No details reported." }}</p>
+                        <p v-if="row.message && row.message !== row.shortSummary && row.shortSummary" class="od-muted">
+                            {{ row.message }}
+                        </p>
+                    </td>
+                    <td class="od-number">{{ date(row.updatedAt || row.detectedAt, { timeStyle: "short" }) }}</td>
+                </template>
+            </ReportTable>
+            <ReportTable
+                v-if="report === 'application-health' && healthCheckId"
+                title="Recorded status history"
+                :columns="['Detected at', 'Result', 'Details', 'Last updated']"
+                :rows="data.history"
+                empty="No history recorded for this application health check yet."
+            >
+                <template #default="{ row }">
+                    <td class="od-number">{{ date(row.detectedAt, { timeStyle: "short" }) }}</td>
+                    <td>
+                        <span class="od-status" :class="`od-status-${healthTone(row.status)}`">{{
+                            healthLabel(row.status)
+                        }}</span>
+                    </td>
+                    <td class="od-report-message">
+                        <p>{{ row.shortSummary || row.message || "No details reported." }}</p>
+                        <p v-if="row.message && row.message !== row.shortSummary && row.shortSummary" class="od-muted">
+                            {{ row.message }}
+                        </p>
+                    </td>
+                    <td class="od-number">{{ date(row.updatedAt, { timeStyle: "short" }) }}</td>
+                </template>
+            </ReportTable>
+            <ReportTable
+                v-if="report === 'scheduled-tasks'"
+                title="Monitored scheduled tasks"
+                :columns="['Task', 'Result', 'Schedule', 'Last ping', 'Grace period']"
+                :rows="data.scheduledTasks"
+                empty="No scheduled tasks monitored yet. Configure scheduled task monitoring in Oh Dear to see schedules and heartbeat results here."
+            >
+                <template #default="{ row }">
+                    <td class="od-task-name">
+                        <p>{{ row.name }}</p>
+                        <p v-if="row.description" class="od-muted">{{ row.description }}</p>
+                    </td>
+                    <td>
+                        <span
+                            class="od-status"
+                            :class="`od-status-${{ green: 'success', red: 'danger', yellow: 'warning', orange: 'warning' }[row.latestResultLabelColor] || 'muted'}`"
+                            >{{ taskLabel(row) }}</span
+                        >
+                        <p v-if="row.snoozed" class="od-muted">Snoozed</p>
+                    </td>
+                    <td>
+                        <p>
+                            {{
+                                row.humanReadableCronExpression ||
+                                row.cronExpression ||
+                                (row.frequencyInMinutes ? `Every ${row.frequencyInMinutes} minutes` : "Not reported")
+                            }}
+                        </p>
+                        <p v-if="row.cronExpression && row.humanReadableCronExpression" class="od-muted">
+                            {{ row.cronExpression }}
+                        </p>
+                        <p class="od-muted">{{ row.serverTimezone || "Timezone not reported" }}</p>
+                    </td>
+                    <td class="od-number">
+                        {{ row.latestPingAt ? date(row.latestPingAt, { timeStyle: "short" }) : "Never received" }}
+                    </td>
+                    <td class="od-number">
+                        {{ row.graceTimeInMinutes == null ? "Not reported" : `${row.graceTimeInMinutes} minutes` }}
+                    </td>
+                </template>
+            </ReportTable>
             <template v-if="report === 'uptime'">
                 <div class="od-report-grid">
                     <ReportTable

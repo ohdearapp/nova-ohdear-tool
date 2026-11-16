@@ -2,7 +2,12 @@
 
 All notable changes to `nova-ohdear-tool` will be documented in this file
 
-## 2.0.0 - Unreleased
+## Unreleased
+
+- Add application-health reports with individual results and per-check status history.
+- Add paginated scheduled-task reports with schedules, timezones, heartbeat results, and grace periods. Exclude heartbeat credentials and arbitrary health metadata from browser responses.
+
+## 2.0.0 - 2026-11-16
 
 - Require PHP 8.4+, Laravel 13, Nova 5.11.1+, and Oh Dear PHP SDK 4.8+.
 - Replace the Nova 1/2 integration with Nova 5 menu sections, Inertia pages, and Vue 3.
