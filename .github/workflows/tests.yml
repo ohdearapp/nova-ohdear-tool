@@ -42,6 +42,8 @@ jobs:
       - name: Install dependencies
         env:
           DEPENDENCIES: ${{ matrix.dependencies }}
+          # Nova's OpenSpout dependency does not yet allow PHP 8.6.
+          COMPOSER_IGNORE_PLATFORM_REQ: ${{ matrix.php == '8.6' && 'php+' || '' }}
         run: |
           if [ "$DEPENDENCIES" = 'lowest' ]; then
             composer update --prefer-lowest --prefer-stable --prefer-dist --no-interaction

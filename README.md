@@ -79,6 +79,8 @@ Commit rebuilt files in `dist` whenever frontend code changes. Nova provides Vue
 
 GitHub Actions tests PHP 8.4, 8.5, and 8.6 against Laravel 13, including lowest dependencies on PHP 8.4. Pest 5 requires Symfony Process 8, which is incompatible with the Testbench version for Laravel 12.
 
+The PHP 8.6 job is a forward-compatibility check: Nova's OpenSpout dependency currently permits PHP only through 8.5. That job ignores PHP upper bounds during dependency installation, but still runs tests, static analysis, formatting, and the security audit on PHP 8.6. PHP 8.4 and 8.5 enforce all platform requirements.
+
 Configure the repository's Actions secrets `NOVA_USERNAME` (Nova account email) and `NOVA_LICENSE_KEY` for licensed dependency installation. Forked pull requests cannot access these secrets; maintainers must review contributions before running them on a trusted branch. Do not expose the secrets through `pull_request_target`.
 
 ## Credits
